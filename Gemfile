@@ -58,5 +58,5 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
 gem 'twitter'
