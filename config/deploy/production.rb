@@ -1,5 +1,5 @@
 set :stage, :production
-set :branch, :production
+set :branch, :master
 server 'gss2019_production', roles: %w(web app db)
 set :deploy_to, '/home/gss2019_production/app'
 
