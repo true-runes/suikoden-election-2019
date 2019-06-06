@@ -54,3 +54,6 @@ Metrics/AbcSize:
 
 Style/RegexpLiteral:
   Enabled: false # 有効にすると Lint/Syntax で怒られる？ので無効化
+
+Style/MixinUsage:
+  Enabled: false # include は class か module にくるまないと怒られるんだけど、とりあえず無効化
