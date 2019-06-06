@@ -1,1 +1,57 @@
+h1
+  = '幻水総選挙2019'
+h1
+  = '投票開始まであと '
+  span#countdown_unit
+    = 'XX'
+
 = image_tag('gensosenkyo_2019_title.jpg')
+
+javascript:
+  // 期限の設定
+  var gYear = 2019,
+      gMonth = 6,
+      gDay = 7,
+      gHour = 6,
+      gMinute = 10,
+      gSecond = 0;
+  var goal = new Date(gYear, gMonth-1, gDay, gHour, gMinute, gSecond);
+
+  var currentTime, period,
+      cDay, cHour, cMinute, cSecond,
+      insert = "";
+
+  function countdown() {
+    // 現在から期限日までの差を取得
+    currentTime = new Date();
+    period = goal.getTime() - currentTime.getTime();
+
+    if(period >= 0) {
+      cDay = Math.floor(period / (1000 * 60 * 60 * 24));
+      period -= (cDay * (1000 * 60 * 60 * 24));
+
+      cHour = Math.floor(period / (1000 * 60 * 60));
+      period -= (cHour * (1000 * 60 * 60));
+
+      cMinute = Math.floor(period / (1000 * 60));
+      period -= (cMinute * (1000 * 60));
+
+      cSecond = Math.floor(period / (1000));
+      period -= (cSecond * (1000));
+
+      cFlame = Math.floor(period / (10));
+
+      insert = "";
+      // insert += '<span class="d">' + cDay + '</span>' + "日";
+      insert += '<span class="h">' + cHour + '</span>' + "時間";
+      insert += '<span class="m">' + cMinute + '</span>' + "分";
+      insert += '<span class="s">' + cSecond + '</span>' + "秒";
+      insert += '<span class="f">' + cFlame + '</span>' + "";
+      document.getElementById('countdown_unit').innerHTML = insert;
+
+      setTimeout(countdown, 10);
+    } else {
+      document.getElementById('countdown_unit').innerHTML = '投票受付中！';
+    }
+  }
+  countdown();
