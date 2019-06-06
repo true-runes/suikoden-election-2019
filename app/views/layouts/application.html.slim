@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    title
+      = '幻水総選挙 2019'
+    = favicon_link_tag
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+    link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+
+  body
+    = yield
