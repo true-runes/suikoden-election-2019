@@ -57,3 +57,6 @@ Style/RegexpLiteral:
 
 Style/MixinUsage:
   Enabled: false # include は class か module にくるまないと怒られるんだけど、とりあえず無効化
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false # ブロックの周りに余計な空行があると怒られるんだけど、とりあえず無効化
