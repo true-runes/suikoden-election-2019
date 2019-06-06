@@ -1,15 +1,67 @@
-# Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
-version: 2.1
-
-# Use a package of configuration called an orb, see https://circleci.com/docs/2.0/orb-intro/
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.3.1
-
-# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
-workflows:
-  # Name the workflow "Welcome"
-  Welcome:
-    # Run the welcome/run job in its own container
-    jobs:
-      - welcome/run
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/ruby:2.6.3-node-browsers-legacy
+      environment:
+      - RAILS_ENV: test
+      - PGHOST: 127.0.0.1
+      - PGUSER: root
+      - SELENIUM_CHROME_HEADLESS: true
+    # - image: circleci/postgres:9.6
+    #   environment:
+    #   - POSTGRES_USER: root
+    #   - POSTGRES_DB: foobar
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
+        - v1-dependencies-
+    # - run:
+    #     name: Install System Dependencies
+    #     command: |
+    #       sudo apt-get install fonts-migmix
+    # - run:
+    #     name: Install Chrome
+    #     command: |
+    #       sudo apt install -y libappindicator3-1
+    #       curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    #       sudo dpkg -i google-chrome.deb
+    #       sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+    #       rm google-chrome.deb
+    #       /opt/google/chrome/google-chrome --version
+    - run:
+        name: Install appropriate version's Bundler whose number is written in Gemfile.lock
+        command: |
+          gem install bundler:2.0.1
+    - run:
+        name: install gems written in Gemfile
+        command: |
+          bundle install --jobs=4 --retry=3 --path vendor/bundle
+    - run:
+        name: yarn install (temporary)
+        command: yarn install
+    - save_cache:
+        key: v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
+        paths:
+          - vendor/bundle
+          - node_modules
+    # Database setup
+    # - run:
+    #     name: Wait for booting DBMS
+    #     command: dockerize -wait tcp://127.0.0.1:5432 -timeout 30s
+    - run:
+        name: Database setup
+        command: bin/rails db:create; bin/rails db:migrate
+    - run:
+        name: RuboCop
+        command: bundle exec rubocop --rails
+    # - run:
+    #     name: Run Rails Test
+    #     command: |
+    #       mkdir /tmp/test-results
+    #       bundle exec rspec --format progress \
+    #                       $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+    #     when: always # RuboCopは失敗しても通す（WARNING以上は落としてもいいかもしれない）
