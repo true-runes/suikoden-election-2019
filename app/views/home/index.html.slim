@@ -1,19 +1,24 @@
-h1
-  = '幻水総選挙2019'
-h1
-  = '投票開始まであと '
-  span#countdown_unit
-    = 'XX'
+.uk-container
+  .uk-navbar-container.uk-margin
+    .uk-navbar-left.uk-background-default
+      ul.uk-navbar-nav
+        li.uk-active
+          = link_to '幻水総選挙2019', '#'
+  h1
+    = '投票開始まで'
+  h1
+    span#countdown_unit
+      = 'XX'
+  = image_tag('gensosenkyo_2019_title.jpg')
 
-= image_tag('gensosenkyo_2019_title.jpg')
 
 javascript:
   // 期限の設定
   var gYear = 2019,
       gMonth = 6,
       gDay = 7,
-      gHour = 6,
-      gMinute = 10,
+      gHour = 21,
+      gMinute = 0,
       gSecond = 0;
   var goal = new Date(gYear, gMonth-1, gDay, gHour, gMinute, gSecond);
 
