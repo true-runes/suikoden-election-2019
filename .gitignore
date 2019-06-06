@@ -16,3 +16,4 @@ public/assets/
 /config/master.key
 yarn-error.log
 .byebug_history
+.env
