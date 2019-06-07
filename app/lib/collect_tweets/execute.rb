@@ -1,6 +1,7 @@
 class CollectTweets::Execute
   include MyTwitter::Client
 
+  # TODO: メソッド名がわかりにくい
   def call
     object = CollectTweets::Execute.new
 
@@ -9,6 +10,7 @@ class CollectTweets::Execute
     object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
   end
 
+  # TODO: メソッド名がわかりにくい
   def call_to_past
     object = CollectTweets::Execute.new
 
