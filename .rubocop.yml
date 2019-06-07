@@ -66,3 +66,12 @@ Metrics/BlockLength:
 
 Style/SymbolArray:
   Enabled: false # これは個人的に可読性が低いと思うので無効にする
+
+Layout/DotPosition:
+  Enabled: false # これは個人的に可読性が低いと思うので無効にする
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false # これは個人的に可読性が低いと思うので無効にする
+
+Style/Lambda:
+  Enabled: false # TODO: これは個人的に可読性が低いと思うので無効にする……が微妙かも
