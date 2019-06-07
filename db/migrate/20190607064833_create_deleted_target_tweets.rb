@@ -5,7 +5,7 @@ class CreateDeletedTargetTweets < ActiveRecord::Migration[5.2]
       t.integer :collect_tweet_way_id
       t.integer :target_user_id
 
-      t.integer :tweet_id
+      t.bigint :tweet_id
       t.string :text
       t.timestamp :tweeted_at
 
@@ -28,6 +28,7 @@ class CreateDeletedTargetTweets < ActiveRecord::Migration[5.2]
       # user_mentions #=> HACK: 別テーブルにしたほうがいい
     end
 
+    add_index :deleted_target_tweets, :tweet_id, unique: true
     add_index :deleted_target_tweets, :text
   end
 end
