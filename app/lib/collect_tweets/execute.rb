@@ -3,7 +3,7 @@ class CollectTweets::Execute
 
   def call
     object = CollectTweets::Execute.new
-    searched_tweets = object.search(target_search_word: '#幻水総選挙', target_since_id: TargetTweet.all.order("tweet_id desc").first.tweet_id, target_max_id: nil, target_count: 100)
+    searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: TargetTweet.all.order("tweet_id desc").first.tweet_id, target_max_id: nil, target_count: 100)
     object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
   end
 
