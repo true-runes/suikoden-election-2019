@@ -49,9 +49,6 @@ Metrics/MethodLength:
 Rails/Output:
   Enabled: false # プリントデバッグに使いたいので勘弁してくれ
 
-Metrics/AbcSize:
-  Max: 20 # これぐらいの長さになることは許してほしい
-
 Style/RegexpLiteral:
   Enabled: false # 有効にすると Lint/Syntax で怒られる？ので無効化
 
@@ -60,3 +57,12 @@ Style/MixinUsage:
 
 Layout/EmptyLinesAroundBlockBody:
   Enabled: false # ブロックの周りに余計な空行があると怒られるんだけど、とりあえず無効化
+
+Metrics/AbcSize:
+  Enabled: false # いろいろ難しいので一律無効にする
+
+Metrics/BlockLength:
+  Enabled: false # スキーマファイルでガンガンエラーが出るために無効にする
+
+Style/SymbolArray:
+  Enabled: false # これは個人的に可読性が低いと思うので無効にする
