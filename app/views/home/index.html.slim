@@ -7,7 +7,7 @@
   h1
     = '現在の投票数（ツイートのみ）'
   h1
-    = "#{TargetTweet.where(tweeted_at: '2019-06-07 20:50:00 JST'..'2019-06-07 22:00:00 JST').where(is_retweet: false)} 票"
+    = "#{TargetTweet.where(tweeted_at: '2019-06-07 20:50:00 JST'..'2019-06-07 22:00:00 JST').where(is_retweet: false).count} 票"
 
   = image_tag('gensosenkyo_2019_title.jpg')
 
