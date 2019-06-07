@@ -39,13 +39,13 @@ group :development do
 end
 
 group :test, :development, :production do
-  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'bullet'
   gem 'dotenv-rails'
   gem 'draper'
   gem 'gon'
   gem 'google_drive'
   gem 'kaminari'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pg'
   gem 'slim-rails'
   gem 'smarter_csv'
