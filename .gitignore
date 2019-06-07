@@ -17,3 +17,4 @@ public/assets/
 yarn-error.log
 .byebug_history
 .env
+config/google_drive_api.json
