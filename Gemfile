@@ -47,6 +47,7 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-coolline'
   gem 'pry-rails'
+  gem 'rb-readline'
   gem 'rubocop-rails', require: false
 end
 
