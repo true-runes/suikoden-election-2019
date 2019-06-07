@@ -5,9 +5,9 @@
         li.uk-active
           / = link_to '幻水総選挙2019', '#'
   h1
-    = '現在の投票数（ツイートのみ）'
+    = '現在の投票人数（ツイートからの投票のみ）'
   h1
-    = "#{TargetTweet.where(tweeted_at: '2019-06-07 20:50:00 JST'..'2019-06-09 09:00:00 JST').where(is_retweet: false).count} 票"
+    = "#{TargetTweet.where(tweeted_at: '2019-06-07 20:50:00 JST'..'2019-06-09 09:00:00 JST').where(is_retweet: false).count} 人"
 
   = image_tag('gensosenkyo_2019_title.jpg')
 
