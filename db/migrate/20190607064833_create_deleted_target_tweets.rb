@@ -5,7 +5,7 @@ class CreateDeletedTargetTweets < ActiveRecord::Migration[5.2]
       t.integer :collect_tweet_way_id
       t.integer :target_user_id
 
-      t.integer :target_tweet_id
+      t.integer :tweet_id
       t.string :text
       t.timestamp :tweeted_at
 
@@ -15,9 +15,9 @@ class CreateDeletedTargetTweets < ActiveRecord::Migration[5.2]
       t.string :media_url_https_03
       t.string :media_url_https_04
 
-      # TODO: expanded_url #=> 別テーブルにしたほうがいい
+      # TODO: in_tweet_url #=> 別テーブルにしたほうがいい
       # TODO: ここでは最大一個までを取得しているので二個目以降は捨てられてる
-      t.string :expanded_url
+      t.string :in_tweet_url
 
       t.string :lang
       t.boolean :is_retweet

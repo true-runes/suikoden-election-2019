@@ -2,7 +2,6 @@ class CreateTargetUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :target_users do |t|
       t.integer :twitter_user_id
-
       t.string :name
       t.string :screen_name
       t.string :profile_image_url_https
