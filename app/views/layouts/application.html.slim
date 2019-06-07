@@ -2,6 +2,17 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+
+    meta property="og:title" content="幻水総選挙2019 集計所"
+    meta property="og:type" content="website"
+    meta property="og:url" content="https://election.suikoden.info/"
+    meta property="og:image" content="https://election.suikoden.info/gensosenkyo_2019_title.jpg"
+    meta name="twitter:card" content="summary_large_image"
+    meta name="twitter:site" content="https://election.suikoden.info/"
+    meta name="twitter:image" content="https://election.suikoden.info/gensosenkyo_2019_title.jpg"
+    meta name="twitter:title" content="幻水総選挙2019 集計所"
+    meta name="twitter:description" content="幻水総選挙2019の集計等のご案内をするサイトです。"
+
     title
       = '幻水総選挙 2019'
     = favicon_link_tag
@@ -10,6 +21,9 @@ html
 
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+
+
+
 
     link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
     link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet"
