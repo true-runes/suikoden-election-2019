@@ -5,7 +5,7 @@ class CreateTargetTweets < ActiveRecord::Migration[5.2]
       t.integer :collect_tweet_way_id
       t.integer :target_user_id
 
-      t.integer :target_tweet_id
+      t.integer :tweet_id
       t.string :text
       t.timestamp :tweeted_at
 
