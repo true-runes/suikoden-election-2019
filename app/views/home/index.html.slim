@@ -1,15 +1,113 @@
 .container
-  nav.navbar.navbar-expand-lg.navbar-light style="background-color: #7fffd4;"
-    = link_to '幻水総選挙2019', root_path, class: 'navbar-brand mb-0 h1'
-    button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"
-      span.navbar-toggler-icon
-    .collapse.navbar-collapse#navbarToggler
-      ul.navbar-nav.mr-auto.mt-2.mt-lg-0
-        li.nav-item.active
-          = link_to 'ホーム', root_path, class: 'nav-link'
-        li.nav-item
-          = link_to '投票チェック', 'pages_confirm_my_vore_path', class: 'nav-link'
-        li.nav-item
-          = link_to '幻水総選挙とは？', 'pages_what_is_sosenkyo_path', class: 'nav-link'
-        li.nav-item
-          = link_to '過去の総選挙', 'pages_past_sosenkyo_path', class: 'nav-link'
+  .row
+    .col
+      nav.navbar.navbar-expand-lg.navbar-light style="background-color: #7fffd4;"
+        = link_to '幻水総選挙2019', root_path, class: 'navbar-brand mb-0 h1'
+        button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarToggler
+          ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+            li.nav-item.active
+              = link_to 'ホーム', root_path, class: 'nav-link'
+            li.nav-item
+              = link_to '投票チェック（制作中）', '#', class: 'nav-link'
+            li.nav-item
+              = link_to '幻水総選挙とは？（制作中）', '#', class: 'nav-link'
+            li.nav-item
+              = link_to '過去の総選挙（制作中）', '#', class: 'nav-link'
+  .row
+    .col
+      p
+        = ''
+  .row
+    .col
+      = image_tag 'gensosenkyo_2019_top.jpg', class: 'w-100 img-responsive center-block'
+  .row
+    .col
+      p
+        = ''
+  .row
+    .col
+      .card
+        .card-body
+          #countdown_unit
+  .row
+    .col
+      p
+        = ''
+  .row
+    .col
+      .card
+        .card-body
+          h6
+            = '現在の投票人数（ツイート経由） '
+          h2
+            = "#{TargetTweet.valid_vote.count} 人"
+  .row
+    .col
+      = image_tag 'gensosenkyo_2019_title.jpg', class: 'w-100 img-responsive center-block'
+  .row
+    .col
+      hr
+      footer.text-center
+        = link_to '幻水総選挙 (@gensosenkyo)', 'https://twitter.com/gensosenkyo', target: '_new'
+
+javascript:
+  var goalYear = 2019,
+      goalMonth = 6,
+      goalDay = 9,
+      goalHour = 9,
+      goalMinute = 0,
+      goalSecond = 0;
+  var goal = new Date(goalYear, goalMonth - 1, goalDay, goalHour, goalMinute, goalSecond);
+  var remainingTime, period,
+      remainingDay, remainingHour, remainingMinute, remainingSecond,
+      shownText = '';
+
+  function countdown() {
+    remainingTime = new Date();
+    period = goal.getTime() - remainingTime.getTime();
+
+    if(period >= 0) {
+      remainingDay    = Math.floor(period / (1000 * 60 * 60 * 24));
+      period          -= (remainingDay * (1000 * 60 * 60 * 24));
+      remainingHour   = Math.floor(period / (1000 * 60 * 60));
+      period          -= (remainingHour * (1000 * 60 * 60));
+      remainingMinute = Math.floor(period / (1000 * 60));
+      period          -= (remainingMinute * (1000 * 60));
+      remainingSecond = Math.floor(period / (1000));
+      period          -= (remainingSecond * (1000));
+      remainingFlame  = Math.floor(period / (10));
+
+      shownText = '';
+      // shownText += '<span class="d">' + cDay + '</span>' + "日";
+      shownText += '<h6>投票終了まで 残り</h6>';
+      shownText += '<h2>';
+      shownText += '<span class="h">' + remainingHour   + '</span>' + '時間';
+      shownText += '<span class="m">' + remainingMinute + '</span>' + '分';
+      shownText += '<span class="s">' + remainingSecond + '</span>' + '秒';
+      shownText += '<span class="f">' + remainingFlame  + '</span>' + '';
+      shownText += '</h2>';
+
+      // TODO: innerHTMLは撲滅するべき
+      document.getElementById('countdown_unit').innerHTML = shownText;
+      setTimeout(countdown, 10);
+    } else {
+      // TODO: innerHTMLは撲滅するべき
+      document.getElementById('countdown_unit').innerHTML = '<h4>投票は終了しました！</h4>';
+    }
+  }
+
+  // TODO: 20世紀のオートリロードという感じ
+  function scheduledReloadPage() {
+    var reloadPageInterval = 60000;
+    window.addEventListener('load', function() {
+      setInterval('location.reload()', reloadPageInterval);
+    });
+
+    // TODO: innerHTMLは撲滅するべき
+    document.getElementById('countdown_unit').innerHTML = '<h4>投票期間は終了しました！</h4>';
+  }
+
+  scheduledReloadPage();
+  countdown();
