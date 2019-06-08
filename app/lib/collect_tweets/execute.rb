@@ -50,16 +50,23 @@ class CollectTweets::Execute
       media_uris = tweet.attrs[:extended_entities].nil? ? [nil, nil, nil, nil] : tweet.attrs[:extended_entities][:media].map { |attr| attr[:media_url_https] } # 存在しない場合は nil が入る
       extended_url = tweet.attrs[:entites].nil? ? nil : tweet.attrs[:entites][:urls][:extended_url]
 
-      TargetUser.find_or_initialize_by(
-        {
-          twitter_user_id: tweet.attrs[:user][:id],
-          name: tweet.attrs[:user][:name],
-          screen_name: tweet.attrs[:user][:screen_name],
-          profile_image_url_https: tweet.attrs[:user][:profile_image_url_https],
-          # is_protected: false, # tweet.attrs[:user].protected?,
-          lang: tweet.attrs[:user][:lang],
-        }
-      ).save
+      # TODO: User は情報が書き換わることがあり、その場合は find_or_initialize_by だと Duplicate エラーになるんだ……
+      # TODO: 超苦肉の策で例外を握りつぶす
+      begin
+        TargetUser.find_or_initialize_by(
+          {
+            twitter_user_id: tweet.attrs[:user][:id],
+            name: tweet.attrs[:user][:name],
+            screen_name: tweet.attrs[:user][:screen_name],
+            profile_image_url_https: tweet.attrs[:user][:profile_image_url_https],
+            # is_protected: false, # tweet.attrs[:user].protected?,
+            lang: tweet.attrs[:user][:lang],
+          }
+        ).save
+      rescue => e
+        puts '@@@@@ TargetUser.find_or_initialize_by rescue @@@@@'
+        puts e
+      end
 
       TargetTweet.find_or_initialize_by(
         {
