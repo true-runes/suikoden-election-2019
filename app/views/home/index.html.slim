@@ -35,8 +35,8 @@
 javascript:
   var goalYear = 2019,
       goalMonth = 6,
-      goalDay = 9,
-      goalHour = 9,
+      goalDay = 15,
+      goalHour = 18,
       goalMinute = 0,
       goalSecond = 0;
   var goal = new Date(goalYear, goalMonth - 1, goalDay, goalHour, goalMinute, goalSecond);
@@ -60,9 +60,9 @@ javascript:
       remainingFlame  = Math.floor(period / (10));
 
       shownText = '';
-      // shownText += '<span class="d">' + cDay + '</span>' + "日";
-      shownText += '<h6>投票終了まで 残り</h6>';
+      shownText += '<h6>開票まで あと</h6>';
       shownText += '<h2>';
+      shownText += '<span class="d">' + remainingDay    + '</span>' + '日';
       shownText += '<span class="h">' + remainingHour   + '</span>' + '時間';
       shownText += '<span class="m">' + remainingMinute + '</span>' + '分';
       shownText += '<span class="s">' + remainingSecond + '</span>' + '秒';
@@ -74,7 +74,7 @@ javascript:
       setTimeout(countdown, 10);
     } else {
       // TODO: innerHTMLは撲滅するべき
-      document.getElementById('countdown_unit').innerHTML = '<h4>投票は終了しました！</h4>';
+      document.getElementById('countdown_unit').innerHTML = '<h4>開票は始まっています！</h4>';
     }
   }
 
@@ -84,9 +84,6 @@ javascript:
     window.addEventListener('load', function() {
       setInterval('location.reload()', reloadPageInterval);
     });
-
-    // TODO: innerHTMLは撲滅するべき
-    document.getElementById('countdown_unit').innerHTML = '<h4>投票期間は終了しました！</h4>';
   }
 
   // あんまりイケてないのでやめる
