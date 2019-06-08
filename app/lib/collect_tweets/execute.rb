@@ -24,6 +24,14 @@ class CollectTweets::Execute
     end
   end
 
+  # TODO: メソッド名がわかりにくい
+  def call_with_tweet_id_range(start_id:, end_id:)
+    object = CollectTweets::Execute.new
+
+    searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: start_id, target_max_id: end_id, target_count: 100)
+    object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
+  end
+
   # max_id は「以下」を示し、since_id は「より大きい」を表す
   # since_id > max_id だとエラーになるので注意
   # TODO: #take は search 以外には使えないかも
