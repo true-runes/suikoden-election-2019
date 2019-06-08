@@ -30,11 +30,7 @@
   .row
     .col
       = image_tag 'gensosenkyo_2019_title.jpg', class: 'w-100 img-responsive center-block'
-  .row
-    .col
-      hr
-      footer.text-center
-        = link_to '幻水総選挙 (@gensosenkyo)', 'https://twitter.com/gensosenkyo', target: '_new'
+  = render 'shared/footer'
 
 javascript:
   var goalYear = 2019,
