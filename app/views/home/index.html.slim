@@ -1,1 +1,15 @@
-= 'Hello, World!'
+.container
+  nav.navbar.navbar-expand-lg.navbar-light style="background-color: #7fffd4;"
+    = link_to '幻水総選挙2019', root_path, class: 'navbar-brand mb-0 h1'
+    button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarToggler
+      ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+        li.nav-item.active
+          = link_to 'ホーム', root_path, class: 'nav-link'
+        li.nav-item
+          = link_to '投票チェック', 'pages_confirm_my_vore_path', class: 'nav-link'
+        li.nav-item
+          = link_to '幻水総選挙とは？', 'pages_what_is_sosenkyo_path', class: 'nav-link'
+        li.nav-item
+          = link_to '過去の総選挙', 'pages_past_sosenkyo_path', class: 'nav-link'
