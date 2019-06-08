@@ -5,6 +5,9 @@ class CollectTweets::Execute
   def call
     object = CollectTweets::Execute.new
 
+    # TODO: これだと、100ツイート以内に最新ツイートが収まらない場合に取得漏れが発生する
+    # TODO: したがって、既存ツイートの ID に達するまでにループを回すことが本当は必要
+    # TODO: その際も、「検索結果は『上』から調べていく」ということに留意する必要がある
     since_id = TargetTweet.all.order('tweet_id desc').first.nil? ? 1 : TargetTweet.all.order('tweet_id desc').first.tweet_id
     searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: since_id, target_max_id: nil, target_count: 100)
     object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
