@@ -7,10 +7,10 @@ gem 'rails', '~> 5.2.3'
 group :test, :development, :production do
   gem 'bootsnap', '>= 1.1.0', require: false
   gem 'jbuilder', '~> 2.5'
+  gem 'jquery-rails'
   gem 'sass-rails', '~> 5.0'
   gem 'turbolinks', '~> 5'
   gem 'uglifier', '>= 1.3.0'
-  gem 'jquery-rails'
 
   gem 'bootstrap'
   gem 'bullet'
