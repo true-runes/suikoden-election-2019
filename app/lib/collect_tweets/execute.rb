@@ -29,7 +29,7 @@ class CollectTweets::Execute
     object = CollectTweets::Execute.new
 
     searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: start_id, target_max_id: end_id, target_count: 100)
-    object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
+    object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')extended_entities
   end
 
   # TODO: メソッド名がわかりにくい
@@ -46,6 +46,8 @@ class CollectTweets::Execute
       searched_tweets.each do |tweet|
         max_id = tweet.attrs[:id] if tweet.attrs[:id] < max_id
       end
+
+      sleep 30
     end
   end
 
