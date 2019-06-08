@@ -1,0 +1,66 @@
+hr/
+
+h3
+  = '投票ツイートチェック結果'
+.row
+  .col
+    p = ''
+.row
+  .col
+    .card
+      .card-body.alert-info
+        = '・DM による投票はチェックできません'
+        .row
+          .col
+        = '・ツイートの削除や鍵アカを外してからの投票は、反映が遅くなることがあります'
+        .row
+          .col
+        = '・ご不明な点が生じましたら'
+        = link_to '主催', 'https://twitter.com/gensosenkyo', target: '_new'
+        = 'までご連絡ください（DM全開放しています）'
+.row
+  .col
+    p = ''
+.row
+  .col
+    p
+      - if @target_user_screen_name.nil?
+        span.font-weight-bold
+          = "@#{@screen_name}"
+        span
+          = ' さんのツイートは見つかりませんでした。'
+      - else
+        span.font-weight-bold
+          = "@#{@screen_name}"
+        span
+          = ' さんのツイート状況は以下のとおりです。'
+        .row
+          .col
+            .card
+              .card-body
+                = "ツイート数 #{@target_tweets_count}"
+        .row
+          .col
+            p = ''
+        .row
+          .col
+            - @target_tweets_contents.each do |tweet_content|
+              .card
+                .card-body
+                  .row
+                    .col
+                      = image_tag @target_user_icon_uri
+                      = " #{@target_user_name} ("
+                      = link_to "@#{@target_user_screen_name}", "https://twitter.com/#{@target_user_screen_name}", target: '_new'
+                      = ')'
+                  .row
+                    .col
+                      p = ''
+                  = tweet_content['text']
+                  .row
+                    .col
+                      p = ''
+                  = link_to formatted_time_description(tweet_content['tweeted_at']), "https://twitter.com/#{@target_user_screen_name}/status/#{tweet_content['tweet_id']}"
+              .row
+                .col
+                  p = ''

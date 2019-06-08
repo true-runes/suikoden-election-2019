@@ -1,0 +1,16 @@
+.row
+  .col
+    nav.navbar.navbar-expand-lg.navbar-light style="background-color: #7fffd4;"
+      = link_to Constants::SITE_NAME, root_path, class: 'navbar-brand mb-0 h1'
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarToggler
+        ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+          li class = "nav-item #{'active font-weight-bold' if current_page?(root_path)}"
+              = link_to 'ホーム', root_path, class: 'nav-link', style: 'color: black;'
+          li class = "nav-item #{'active font-weight-bold' if current_page?(pages_check_my_vote_path)}"
+              = link_to '投票チェック', pages_check_my_vote_path, class: 'nav-link', style: 'color: black;'
+          / li class = "nav-item"
+          /     = link_to '幻水総選挙とは？（制作中）', '#', class: 'nav-link'
+          / li class = "nav-item"
+          /     = link_to '過去の総選挙（制作中）', '#', class: 'nav-link'

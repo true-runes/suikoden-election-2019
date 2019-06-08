@@ -75,3 +75,9 @@ Layout/MultilineMethodCallIndentation:
 
 Style/Lambda:
   Enabled: false # TODO: これは個人的に可読性が低いと思うので無効にする……が微妙かも
+
+Style/UnlessElse:
+  Enabled: false # TODO: これは個人的に可読性が低いと思うので無効にする……が微妙かも
+
+Style/UnneededInterpolation:
+  Enabled: false # 好みの問題
