@@ -1,34 +1,25 @@
-- @page_name = '投票チェック'
+- @page_name = '投票ツイートチェック'
 
 .container
   = render 'shared/navbar'
   .row
     .col
-      p
-        = ''
+      p = ''
   .row
     .col
-      .card
-        .card-body
-          = "投票チェック"
+      h3 = '投票ツイートチェック'
   .row
     .col
-      p
-        = ''
+      p = 'チェックしたい Twitter の ID を入力してください（「@」は不要）。'
   .row
     .col
-      .card
-        .card-body
-          = params
-  .row
-    .col
-      p
-        = ''
-  .row
-    .col
-      .card
-        .card-body
-          = form_with(url: pages_check_my_vote_path, method: 'get', skip_enforcing_utf8: true, local: true) do |form|
-            = form.label :title
-            = form.text_field :title
-            = form.submit
+      = form_with(url: pages_check_my_vote_path, method: 'get', skip_enforcing_utf8: true, local: false) do |form|
+        = form.text_field :screen_name, placeholder: 'gensosenkyo'
+        .row
+          .col
+            p = ''
+        .row
+          .col
+            = form.submit '調べる！', name: nil, class: 'btn btn-primary'
+  - unless @screen_name.nil?
+    = render 'shared/result_check_my_post'

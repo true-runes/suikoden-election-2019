@@ -7,4 +7,8 @@ module ApplicationHelper
       "#{Constants::SITE_NAME} - #{@page_name}"
     end
   end
+
+  def formatted_time_description(time_class)
+    time_class.strftime('%Y/%m/%d %H:%M:%S')
+  end
 end
