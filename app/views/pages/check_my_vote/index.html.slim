@@ -6,8 +6,11 @@
     .col
       p = ''
   .row
-    .col style="color: red;"
-      h3 = '※現在調整中ですので正しく結果が出るまで少々お待ちください……'
+    .col
+      .alert.alert-danger
+        = 'Twitter側の仕様により、一部の方のツイートが取得できないことが判明しています。ツイートで投票したにもかかわらず検索結果に現れない場合は'
+        = link_to '主催', 'https://twitter.com/gensosenkyo', target: '_new'
+        = 'までご連絡ください（DM全体開放しています）。'
   .row
     .col
       p = ''
