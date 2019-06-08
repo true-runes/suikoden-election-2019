@@ -32,6 +32,23 @@ class CollectTweets::Execute
     object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
   end
 
+  # TODO: メソッド名がわかりにくい
+  # TODO: 全部取り直し
+  def call_for_initialize(how_many_executions)
+    object = CollectTweets::Execute.new
+
+    max_id = 9_999_999_999_999_999_999
+
+    how_many_executions.times do
+      searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: 1, target_max_id: max_id, target_count: 100)
+      object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
+
+      searched_tweets.each do |tweet|
+        max_id = tweet.attrs[:id] if tweet.attrs[:id] < max_id
+      end
+    end
+  end
+
   # max_id は「以下」を示し、since_id は「より大きい」を表す
   # since_id > max_id だとエラーになるので注意
   # TODO: #take は search 以外には使えないかも
