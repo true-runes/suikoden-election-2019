@@ -46,9 +46,9 @@ class CollectTweets::Execute
       searched_tweets.each do |tweet|
         max_id = tweet.attrs[:id] if tweet.attrs[:id] < max_id
       end
-    end
 
-    sleep 30
+      sleep 30
+    end
   end
 
   # max_id は「以下」を示し、since_id は「より大きい」を表す
