@@ -25,7 +25,7 @@ class TargetTweet < ApplicationRecord
   scope :valid_vote,
         -> {
           where(tweeted_at: start_vote_time..end_vote_time).
-          where(is_retweet: true).
+          where(is_retweet: false).
           where.not(target_user_id: TargetUser.gensosenkyo.id)
         }
 end
