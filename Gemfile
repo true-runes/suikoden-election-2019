@@ -21,6 +21,9 @@ group :test, :development, :production do
   gem 'kaminari'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pg'
+  gem 'pry-coolline'
+  gem 'pry-rails'
+  gem 'rb-readline'
   gem 'slim-rails'
   gem 'smarter_csv'
   gem 'twitter'
@@ -47,9 +50,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-byebug'
-  gem 'pry-coolline'
-  gem 'pry-rails'
-  gem 'rb-readline'
   gem 'rubocop-rails', require: false
 end
 
