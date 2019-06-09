@@ -25,7 +25,6 @@ class CollectTweets::Execute
 
   # TODO: メソッド名がわかりにくい
   def call_with_tweet_id_range(start_id:, end_id:)
-
     searched_tweets = search(target_search_word: '#幻水総選挙2019', target_since_id: start_id, target_max_id: end_id, target_count: 100)
     record_to_db(searched_tweets, collect_way: 3, parameter: 'call_with_tweet_id_range')
   end
