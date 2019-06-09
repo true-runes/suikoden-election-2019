@@ -84,3 +84,6 @@ Style/UnneededInterpolation:
 
 Style/RescueStandardError:
   Enabled: false # TODO: まあちゃんと書くべきだが……
+
+Metrics/ModuleLength:
+  Enabled: false # 初期データなどで大量のデータを Constants に入れることもある
