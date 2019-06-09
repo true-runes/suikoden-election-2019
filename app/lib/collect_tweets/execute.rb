@@ -3,57 +3,49 @@ class CollectTweets::Execute
 
   # TODO: メソッド名がわかりにくい
   def call
-    object = CollectTweets::Execute.new
-
     # TODO: これだと、100ツイート以内に最新ツイートが収まらない場合に取得漏れが発生する
     # TODO: したがって、既存ツイートの ID に達するまでにループを回すことが本当は必要
     # TODO: その際も、「検索結果は『上』から調べていく」ということに留意する必要がある
     since_id = TargetTweet.all.order('tweet_id desc').first.nil? ? 1 : TargetTweet.all.order('tweet_id desc').first.tweet_id
-    searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: since_id, target_max_id: nil, target_count: 100)
-    object.record_to_db(searched_tweets, collect_way: 1, parameter: 'call')
+    searched_tweets = search(target_search_word: '#幻水総選挙2019', target_since_id: since_id, target_max_id: nil, target_count: 100)
+    record_to_db(searched_tweets, collect_way: 1, parameter: 'call')
   end
 
   # TODO: メソッド名がわかりにくい
   def call_to_past
-    object = CollectTweets::Execute.new
-
     # max_id の方を基準にして、idが少ない方に少ない方に検索結果が取得できることに注意！
     # TODO: 10回で決め打ちしているのはあまり賢くない
     10.times do
       max_id = TargetTweet.all.order('tweet_id asc').first.nil? ? 9_999_999_999_999_999_999 : TargetTweet.all.order('tweet_id asc').first.tweet_id - 1 # あまり賢くないが、こうするしかない
 
-      searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: 1, target_max_id: max_id, target_count: 100)
-      object.record_to_db(searched_tweets, collect_way: 1, parameter: 'call_to_past')
+      searched_tweets = search(target_search_word: '#幻水総選挙2019', target_since_id: 1, target_max_id: max_id, target_count: 100)
+      record_to_db(searched_tweets, collect_way: 1, parameter: 'call_to_past')
     end
   end
 
   # TODO: メソッド名がわかりにくい
   def call_with_tweet_id_range(start_id:, end_id:)
-    object = CollectTweets::Execute.new
 
-    searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: start_id, target_max_id: end_id, target_count: 100)
-    object.record_to_db(searched_tweets, collect_way: 3, parameter: 'call_with_tweet_id_range')
+    searched_tweets = search(target_search_word: '#幻水総選挙2019', target_since_id: start_id, target_max_id: end_id, target_count: 100)
+    record_to_db(searched_tweets, collect_way: 3, parameter: 'call_with_tweet_id_range')
   end
 
   # TODO: メソッド名がわかりにくい
   # TODO: tweet_ids は Integer を要素とする Array である
   def call_with_tweet_ids(tweet_ids)
-    # TODO: これいらないだろ？（他の部分も含めて）
-    # object = CollectTweets::Execute.new
-    target_tweets = get_by_tweet_ids(tweet_ids)
+    # 100以上入れても、いい具合に100ずつに分割してくれるように見えた（要厳密確認）
+    @my_twitter_client.statuses(tweet_ids, { tweet_mode: 'extended', result_type: 'recent' })
     record_to_db(target_tweets, collect_way: 2, parameter: 'call_with_tweet_ids')
   end
 
   # TODO: メソッド名がわかりにくい
-  # TODO: 全部取り直し
+  # TODO: 全部取り直し用のメソッド
   def call_for_initialize(how_many_executions)
-    object = CollectTweets::Execute.new
-
     max_id = 9_999_999_999_999_999_999
 
     how_many_executions.times do
-      searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: 1, target_max_id: max_id, target_count: 100)
-      object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
+      searched_tweets = search(target_search_word: '#幻水総選挙2019', target_since_id: 1, target_max_id: max_id, target_count: 100)
+      record_to_db(searched_tweets, collect_way: 1, parameter: 'call_for_initialize')
 
       searched_tweets.each do |tweet|
         max_id = tweet.attrs[:id] if tweet.attrs[:id] < max_id
@@ -77,12 +69,6 @@ class CollectTweets::Execute
           max_id: target_max_id,
         }
       ).take(target_count)
-  end
-
-  # TODO: tweet_ids は Integer が要素の Array である必要があるのでその部分の判定とかを入れる
-  def get_by_tweet_ids(tweet_ids)
-    # TODO: 100ごとに分割する必要がある？それともいい具合にやってくれるのか？
-    @my_twitter_client.statuses(tweet_ids, { tweet_mode: 'extended', result_type: 'recent' })
   end
 
   # TODO: parameter という変数名が一般的すぎて不安
