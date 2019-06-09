@@ -1,18 +1,23 @@
 class Spreadsheets::WriteToSheet
-  def self.execute
-    session = GoogleDrive::Session.from_config('config/google_drive_api.json')
-    target_sheet = session.spreadsheet_by_key(ENV['GOOGLE_DRIVE_API_KEY']).worksheets[1]
+  # TODO: 「スプレッドシート」→「シート」で名前空間を切ると DRY になる
+  def initialize
+    @session = GoogleDrive::Session.from_config('config/google_drive_api.json')
+  end
 
-    # TODO: リファクタリングする
-    # rubocop:disable Lint/UselessAssignment
-    start_row_number    = 2
-    # rubocop:enable Lint/UselessAssignment
-    start_column_number = 20
+  def visual_confirmation
+    # TODO: 秘匿できるならする
+    target_sheet_id = 970993814
+    target_sheet = @session.spreadsheet_by_key(ENV['SPREADSHEETS_COUNTING_VOTES']).worksheet_by_sheet_id(target_sheet_id)
 
-    # TODO: RTは除外、@gensosenkyo は除外、など
-    10.times do |i|
-      tweet = TargetTweet.find(750 + i)['text']
-      target_sheet[2 + i, start_column_number] = tweet
+    start_row_number = 2
+    # TODO: N + 1 problem
+    TargetTweet.valid_vote.order('tweet_id desc').each_with_index do |tweet, i|
+      # HACK: マジックナンバーを撲滅するために、列とその内容の情報を YAML かなんかで持ちたい
+      target_sheet[start_row_number + i, 1] = tweet.target_user.name
+      target_sheet[start_row_number + i, 2] = tweet.target_user.screen_name
+      target_sheet[start_row_number + i, 3] = tweet.text
+      target_sheet[start_row_number + i, 4] = tweet.tweeted_at
+      target_sheet[start_row_number + i, 5] = tweet.tweet_id
     end
 
     target_sheet.save
