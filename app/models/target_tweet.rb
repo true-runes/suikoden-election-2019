@@ -4,7 +4,7 @@ class TargetTweet < ApplicationRecord
   # belongs_to :collect_tweet_ways
 
   start_vote_time = '2019-06-07 21:00:00 JST'
-  end_vote_time   = '2019-06-09 09:00:00 JST'
+  end_vote_time   = '2019-06-09 10:00:00 JST'
 
   # TODO: 2014年の書き方であり、もっとスマートな書き方が絶対にあるはずだろ
   # https://stackoverflow.com/questions/20942672/rails-scope-returns-all-instead-of-nil
