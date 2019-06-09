@@ -117,6 +117,7 @@ class CollectTweets::Execute
           }
         ).save
       rescue => e
+        # ActiveRecord::RecordNotUnique: PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_target_tweets_on_tweet_id"
         puts '@@@@@ TargetTweet.find_or_initialize_by rescue @@@@@'
         puts e
       end
