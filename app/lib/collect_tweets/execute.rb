@@ -10,7 +10,7 @@ class CollectTweets::Execute
     # TODO: その際も、「検索結果は『上』から調べていく」ということに留意する必要がある
     since_id = TargetTweet.all.order('tweet_id desc').first.nil? ? 1 : TargetTweet.all.order('tweet_id desc').first.tweet_id
     searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: since_id, target_max_id: nil, target_count: 100)
-    object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
+    object.record_to_db(searched_tweets, collect_way: 1, parameter: 'call')
   end
 
   # TODO: メソッド名がわかりにくい
@@ -23,7 +23,7 @@ class CollectTweets::Execute
       max_id = TargetTweet.all.order('tweet_id asc').first.nil? ? 9_999_999_999_999_999_999 : TargetTweet.all.order('tweet_id asc').first.tweet_id - 1 # あまり賢くないが、こうするしかない
 
       searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: 1, target_max_id: max_id, target_count: 100)
-      object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
+      object.record_to_db(searched_tweets, collect_way: 1, parameter: 'call_to_past')
     end
   end
 
@@ -32,7 +32,16 @@ class CollectTweets::Execute
     object = CollectTweets::Execute.new
 
     searched_tweets = object.search(target_search_word: '#幻水総選挙2019', target_since_id: start_id, target_max_id: end_id, target_count: 100)
-    object.record_to_db(searched_tweets, collect_way: 'foo', parameter: 'bar')
+    object.record_to_db(searched_tweets, collect_way: 3, parameter: 'call_with_tweet_id_range')
+  end
+
+  # TODO: メソッド名がわかりにくい
+  # TODO: tweet_ids は Integer を要素とする Array である
+  def call_with_tweet_ids(tweet_ids)
+    # TODO: これいらないだろ？（他の部分も含めて）
+    # object = CollectTweets::Execute.new
+    target_tweets = get_by_tweet_ids(tweet_ids)
+    record_to_db(target_tweets, collect_way: 2, parameter: 'call_with_tweet_ids')
   end
 
   # TODO: メソッド名がわかりにくい
@@ -70,6 +79,12 @@ class CollectTweets::Execute
       ).take(target_count)
   end
 
+  # TODO: tweet_ids は Integer が要素の Array である必要があるのでその部分の判定とかを入れる
+  def get_by_tweet_ids(tweet_ids)
+    # TODO: 100ごとに分割する必要がある？それともいい具合にやってくれるのか？
+    @my_twitter_client.statuses(tweet_ids, { tweet_mode: 'extended', result_type: 'recent' })
+  end
+
   # TODO: parameter という変数名が一般的すぎて不安
   # rubocop:disable Lint/UnusedMethodArgument
   def record_to_db(target_tweets_object, collect_way: 1, parameter:)
@@ -98,22 +113,28 @@ class CollectTweets::Execute
         puts e
       end
 
-      TargetTweet.find_or_initialize_by(
-        {
-          collect_tweet_way_id: collect_way,
-          target_user_id: TargetUser.where(twitter_user_id: tweet.attrs[:user][:id]).first.id,
-          tweet_id: tweet.attrs[:id],
-          text: tweet.attrs[:full_text],
-          tweeted_at: tweet.attrs[:created_at],
-          media_url_https_01: media_uris[0],
-          media_url_https_02: media_uris[1],
-          media_url_https_03: media_uris[2],
-          media_url_https_04: media_uris[3],
-          in_tweet_url: extended_url,
-          lang: tweet.attrs[:lang],
-          is_retweet: tweet.retweet?
-        }
-      ).save
+      # TODO: Tweet は Upsert になることは予想されてないので例外握りつぶしても実質的な問題ないけど、現実的にはダメ
+      begin
+        TargetTweet.find_or_initialize_by(
+          {
+            collect_tweet_way_id: collect_way,
+            target_user_id: TargetUser.where(twitter_user_id: tweet.attrs[:user][:id]).first.id,
+            tweet_id: tweet.attrs[:id],
+            text: tweet.attrs[:full_text],
+            tweeted_at: tweet.attrs[:created_at],
+            media_url_https_01: media_uris[0],
+            media_url_https_02: media_uris[1],
+            media_url_https_03: media_uris[2],
+            media_url_https_04: media_uris[3],
+            in_tweet_url: extended_url,
+            lang: tweet.attrs[:lang],
+            is_retweet: tweet.retweet?
+          }
+        ).save
+      rescue => e
+        puts '@@@@@ TargetTweet.find_or_initialize_by rescue @@@@@'
+        puts e
+      end
     end
   end
 end
