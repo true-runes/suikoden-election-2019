@@ -56,8 +56,7 @@ h3
                   .row
                     .col
                       p = ''
-                  pre style="font-family: initial;"
-                    = tweet_content['text']
+                  = simple_format tweet_content['text']
                   = link_to formatted_time_description(tweet_content['tweeted_at']), "https://twitter.com/#{@target_user_screen_name}/status/#{tweet_content['tweet_id']}"
               .row
                 .col
