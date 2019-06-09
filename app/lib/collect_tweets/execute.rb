@@ -72,7 +72,7 @@ class CollectTweets::Execute
 
   # TODO: parameter という変数名が一般的すぎて不安
   # rubocop:disable Lint/UnusedMethodArgument
-  def record_to_db(target_tweets_object, collect_way:, parameter:)
+  def record_to_db(target_tweets_object, collect_way: 1, parameter:)
     # rubocop:enable Lint/UnusedMethodArgument
     target_tweets_object.each do |tweet|
 
@@ -100,7 +100,7 @@ class CollectTweets::Execute
 
       TargetTweet.find_or_initialize_by(
         {
-          collect_tweet_way_id: 1,
+          collect_tweet_way_id: collect_way,
           target_user_id: TargetUser.where(twitter_user_id: tweet.attrs[:user][:id]).first.id,
           tweet_id: tweet.attrs[:id],
           text: tweet.attrs[:full_text],
