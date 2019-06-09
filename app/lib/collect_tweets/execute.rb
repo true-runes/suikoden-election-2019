@@ -33,7 +33,7 @@ class CollectTweets::Execute
   # TODO: tweet_ids は Integer を要素とする Array である
   def call_with_tweet_ids(tweet_ids)
     # 100以上入れても、いい具合に100ずつに分割してくれるように見えた（要厳密確認）
-    @my_twitter_client.statuses(tweet_ids, { tweet_mode: 'extended', result_type: 'recent' })
+    target_tweets = @my_twitter_client.statuses(tweet_ids, { tweet_mode: 'extended', result_type: 'recent' })
     record_to_db(target_tweets, collect_way: 2, parameter: 'call_with_tweet_ids')
   end
 
