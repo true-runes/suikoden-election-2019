@@ -22,4 +22,24 @@ class Spreadsheets::WriteToSheet
 
     target_sheet.save
   end
+
+  def missed_tweets
+    # TODO: 秘匿できるならする
+    target_sheet_id = 1051904817
+    target_sheet = @session.spreadsheet_by_key(ENV['SPREADSHEETS_COUNTING_VOTES']).worksheet_by_sheet_id(target_sheet_id)
+
+    start_row_number = 2
+    # TODO: N + 1 problem
+    missed_tweets = TargetTweet.where(tweet_id: Constants::MERGED_MISSED_TWEET_IDS)
+    missed_tweets.each_with_index do |tweet, i|
+      # HACK: マジックナンバーを撲滅するために、列とその内容の情報を YAML かなんかで持ちたい
+      target_sheet[start_row_number + i, 1] = tweet.target_user.name
+      target_sheet[start_row_number + i, 2] = tweet.target_user.screen_name
+      target_sheet[start_row_number + i, 3] = tweet.text
+      target_sheet[start_row_number + i, 4] = tweet.tweeted_at
+      target_sheet[start_row_number + i, 5] = tweet.tweet_id
+    end
+
+    target_sheet.save
+  end
 end
