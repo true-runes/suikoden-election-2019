@@ -22,11 +22,15 @@ class CheckTweets::Duplicated
       shown_twitter_user_id_count[twitter_user_id.to_s] += 1
     end
 
-    duplicated_tweeted_twitter_user_id_str_and_its_count = {}
+    duplicated_tweeted_twitter_user_id_str_and_its_count = []
     shown_twitter_user_id_count.each do |twitter_user_id, shown_count|
       if shown_count >= 2
-        duplicated_tweeted_twitter_user_id_str_and_its_count['twitter_user_id_str'] = twitter_user_id.to_s
-        duplicated_tweeted_twitter_user_id_str_and_its_count['count'] = shown_count
+        inserted_hash = {}
+
+        inserted_hash['twitter_user_id_str'] = twitter_user_id.to_s
+        inserted_hash['count'] = shown_count
+
+        duplicated_tweeted_twitter_user_id_str_and_its_count << inserted_hash
       end
     end
 
@@ -43,10 +47,13 @@ class CheckTweets::Duplicated
         end
       end
     end
+
+    duplicated_tweet_ids
   end
 
   # tweet_id_and_can_see_tweet = [{ tweet_id_str: "123456", can_see_tweet: true }, ...]
   def tweet_id_and_can_see_tweet(tweet_ids_array)
+    fetch_interval = 10
     tweet_id_and_can_see_tweet = []
 
     tweet_ids_array.each do |tweet_id|
@@ -56,6 +63,7 @@ class CheckTweets::Duplicated
       inserted_hash['can_see_tweet']  = @my_twitter_client.status(tweet_id).nil? ? false : true
 
       tweet_id_and_can_see_tweet << inserted_hash
+      sleep fetch_interval
     end
 
     tweet_id_and_can_see_tweet
