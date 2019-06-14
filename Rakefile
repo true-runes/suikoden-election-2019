@@ -5,11 +5,18 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-desc "Insert 'Gensui Oshi-Serifu to database'"
-task insert_gensui_oshi_serifu: :environment do
-  CollectTweets::Execute.new.call_with_tweet_ids(
-    Constants::GENSUI_OSHI_SERIFU_TWEET_IDS,
-    collect_way: 4,
-    parameter: 'gensui_oshi_serifu',
-  )
+namespace :oshi_serifu do
+  desc "Insert 'Gensui Oshi-Serifu to database'"
+  task insert: :environment do
+    CollectTweets::Execute.new.call_with_tweet_ids(
+      Constants::GENSUI_OSHI_SERIFU_TWEET_IDS,
+      collect_way: 4,
+      parameter: 'gensui_oshi_serifu',
+    )
+  end
+
+  desc 'Show the number of Oshi-Sefiru record'
+  task count: :environment do
+    p TargetTweet.gensui_oshi_serifu.count
+  end
 end
