@@ -28,4 +28,11 @@ class TargetTweet < ApplicationRecord
           where(is_retweet: false).
           where.not(target_user_id: TargetUser.gensosenkyo.id)
         }
+
+  scope :gensui_oshi_serifu,
+        -> {
+          where(is_retweet: false).
+          where.not(target_user_id: TargetUser.gensosenkyo.id).
+          where(collect_tweet_way_id: 4)
+        }
 end
