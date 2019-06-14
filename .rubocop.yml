@@ -90,3 +90,6 @@ Metrics/ModuleLength:
 
 Style/GuardClause:
   Enabled: false # 可読性重視
+
+Style/TrailingCommaInArguments:
+  Enabled: false # これは無効にしたほうが Ruby らしいだろう
