@@ -4,3 +4,12 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+desc "Insert 'Gensui Oshi-Serifu to database'"
+task insert_gensui_oshi_serifu: :environment do
+  CollectTweets::Execute.new.call_with_tweet_ids(
+    Constants::GENSUI_OSHI_SERIFU_TWEET_IDS,
+    collect_way: 4,
+    parameter: 'gensui_oshi_serifu',
+  )
+end
