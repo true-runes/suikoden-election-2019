@@ -39,7 +39,7 @@ en:
       last: "最後"
       previous: "前"
       next: "次"
-      truncate: "&hellip;"
+      truncate: ".."
   helpers:
     page_entries_info:
       entry:
