@@ -1,0 +1,21 @@
+- @page_name = '開票ツイート'
+
+.container
+  = render 'shared/navbar'
+  .row
+    .col
+      p = ''
+  .row
+    .col
+      h3 = '開票ツイート'
+  .row
+    .col
+      p = ''
+  .row
+    .col
+      = paginate @result_tweets
+  = render partial: 'shared/tweet_unit', collection: @result_tweets, as: :tweet
+  .row
+    .col
+      = paginate @result_tweets
+  = render 'shared/footer'

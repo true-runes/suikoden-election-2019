@@ -1,0 +1,15 @@
+- @page_name = 'スタッフ'
+
+.container
+  = render 'shared/navbar'
+  .row
+    .col
+      p = ''
+  .row
+    .col
+      h3 = 'スタッフ'
+  .row
+    .col
+      p = ''
+  = render partial: 'shared/staff_unit', collection: @staffs, as: :staff
+  = render 'shared/footer'

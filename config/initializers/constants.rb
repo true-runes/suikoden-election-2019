@@ -5,6 +5,15 @@ module Constants
                 '幻水総選挙2019'.freeze
               end
 
+  STAFFS = [
+    { name: '皓月様', screen_name: 'k_otare', icon_file: '@k_otare_icon' },
+    { name: 'さいり様', screen_name: 'mizuhara0127', icon_file: '@mizuhara0127_icon' },
+    { name: '田中まさはる様', screen_name: '?????', icon_file: '@gomikoro_icon' },
+    { name: '若dnt子様', screen_name: 'wakadante', icon_file: '@wakadante_icon' },
+    { name: 'たっきー様', screen_name: 'potch_rune', icon_file: '@potch_rune_icon' },
+    { name: 'キネコ', screen_name: 'kineko_27', icon_file: '@kineko_27_icon' },
+  ].freeze
+
   FINAL_PARTICIPANTS_NUMBER_VIA_TWEET = 1749
   FINAL_PARTICIPANTS_NUMBER_VIA_DM    = 158
   FINAL_PARTICIPANTS_NUMBER_VIA_ALL   = FINAL_PARTICIPANTS_NUMBER_VIA_TWEET + FINAL_PARTICIPANTS_NUMBER_VIA_DM
