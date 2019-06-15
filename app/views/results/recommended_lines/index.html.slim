@@ -1,0 +1,24 @@
+- @page_name = '#幻水推し台詞'
+
+.container
+  = render 'shared/navbar'
+  .row
+    .col
+      p = ''
+  .row
+    .col
+      h3 = '#幻水推し台詞'
+  .row
+    .col
+      p = '※投稿者様の敬称は省略させて頂いております'
+  .table-responsive
+    table.table.table-striped.table-hover
+      thead.thead-dark
+        tr
+          th scope="col"
+            = '投稿者'
+          th scope="col"
+            = '台詞'
+      tbody
+        = render partial: 'shared/recommended_lines_unit', collection: @recommended_lines_from_csv, as: :recommended_line
+  = render 'shared/footer'

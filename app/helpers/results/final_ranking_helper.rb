@@ -1,0 +1,2 @@
+module Results::FinalRankingHelper
+end
