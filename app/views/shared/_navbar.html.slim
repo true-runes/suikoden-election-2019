@@ -12,6 +12,8 @@
               = link_to '開票ツイート', result_tweets_path, class: 'nav-link', style: 'color: black;'
           li class = "nav-item #{'active font-weight-bold' if current_page?(pages_check_my_vote_path)}"
               = link_to '投票チェック', pages_check_my_vote_path, class: 'nav-link', style: 'color: black;'
+          li class = "nav-item #{'active font-weight-bold' if current_page?(pages_staffs_path)}"
+              = link_to 'スタッフ', pages_staffs_path, class: 'nav-link', style: 'color: black;'
           / li class = "nav-item"
           /     = link_to '幻水総選挙とは？（制作中）', '#', class: 'nav-link'
           / li class = "nav-item"
