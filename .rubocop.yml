@@ -87,3 +87,9 @@ Style/RescueStandardError:
 
 Metrics/ModuleLength:
   Enabled: false # 初期データなどで大量のデータを Constants に入れることもある
+
+Style/GuardClause:
+  Enabled: false # 可読性重視
+
+Style/TrailingCommaInArguments:
+  Enabled: false # これは無効にしたほうが Ruby らしいだろう
