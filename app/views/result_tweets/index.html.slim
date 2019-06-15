@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - @page_name = '開票ツイート'
 
 .container
@@ -14,3 +15,15 @@
   = paginate @result_tweets
   = render partial: 'shared/tweet_unit', collection: @result_tweets, as: :tweet
   = render 'shared/footer'
+||||||| merged common ancestors
+=======
+- @page_name = '開票ツイート'
+
+.container
+  = render 'shared/navbar'
+  .row
+    .col
+      p = ''
+  = render partial: 'shared/tweet_unit', collection: @result_tweets, as: :tweet
+  = render 'shared/footer'
+>>>>>>> development
