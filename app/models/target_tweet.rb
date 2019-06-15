@@ -29,10 +29,10 @@ class TargetTweet < ApplicationRecord
           where.not(target_user_id: TargetUser.gensosenkyo.id)
         }
 
-  scope :oshi_serif,
+  scope :gensui_oshi_serifu,
         -> {
           where(is_retweet: false).
           where.not(target_user_id: TargetUser.gensosenkyo.id).
-          where(collect_tweet_way_id: 4) # TODO: ハードコーディングを撤廃する
+          where(collect_tweet_way_id: 4)
         }
 end
