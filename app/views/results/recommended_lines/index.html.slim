@@ -10,63 +10,15 @@
       h3 = '#幻水推し台詞'
   .row
     .col
-      p = ''
+      p = '※投稿者様の敬称は省略させて頂いております'
   .table-responsive
     table.table.table-striped.table-hover
       thead.thead-dark
         tr
           th scope="col"
-            = "#"
+            = '投稿者'
           th scope="col"
-            = "First"
-          th scope="col"
-            = "Last"
-          th scope="col"
-            = "Handle"
+            = '台詞'
       tbody
-        tr
-          th scope="row"
-            = "1"
-          td
-            = 'FOO'
-          td
-            = '/path/foobar/docker-compose.yml'
-          td
-            = '/path/to/foobar/docker-compose.yml'
-        tr
-          th scope="row"
-            = "1"
-          td
-            = 'FOO'
-          td
-            = '/path/foobar/docker-compose.yml'
-          td
-            = '/path/to/foobar/docker-compose.yml'
-        tr
-          th scope="row"
-            = "1"
-          td
-            = 'FOO'
-          td
-            = '/path/foobar/docker-compose.yml'
-          td
-            = '/path/to/foobar/docker-compose.yml'
-        tr
-          th scope="row"
-            = "1"
-          td
-            = 'FOO'
-          td
-            = '/path/foobar/docker-compose.yml'
-          td
-            = '/path/to/foobar/docker-compose.yml'
-        tr
-          th scope="row"
-            = "1"
-          td
-            = 'FOO'
-          td
-            = '/path/foobar/docker-compose.yml'
-          td
-            = '/path/to/foobar/docker-compose.yml'
+        = render partial: 'shared/recommended_lines_unit', collection: @recommended_lines_from_csv, as: :recommended_line
   = render 'shared/footer'
