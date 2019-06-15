@@ -1,0 +1,14 @@
+- @page_name = '開票ツイート'
+
+.container
+  = render 'shared/navbar'
+  .row
+    .col
+      p = ''
+
+  = render partial: 'shared/tweet_unit', collection: @result_tweets, as: :tweet
+
+  .row
+    .col
+      p = 'Hello, World!'
+  = render 'shared/footer'

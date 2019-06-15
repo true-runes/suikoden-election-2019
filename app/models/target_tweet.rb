@@ -22,6 +22,7 @@ class TargetTweet < ApplicationRecord
       screen_name
   end
 
+  # HACK: 複数形のほうが良かったかも
   scope :valid_vote,
         -> {
           where(tweeted_at: start_vote_time..end_vote_time).
@@ -34,5 +35,12 @@ class TargetTweet < ApplicationRecord
           where(is_retweet: false).
           where.not(target_user_id: TargetUser.gensosenkyo.id).
           where(collect_tweet_way_id: 4)
+        }
+
+  scope :result_tweets,
+        -> {
+          where(tweeted_at: start_vote_time..end_vote_time).
+          where(is_retweet: false).
+          where(target_user_id: TargetUser.gensosenkyo.id)
         }
 end

@@ -1,0 +1,17 @@
+- a = TargetTweet.result_tweets[0].target_user.name
+- b = TargetTweet.result_tweets[0].target_user.screen_name
+- c = TargetTweet.result_tweets[0].text
+- d = TargetTweet.result_tweets[0].tweeted_at
+
+/ media_uri_https_01
+/ media_uri_https_02
+/ media_uri_https_03
+/ media_uri_https_04
+/ profile_image_url_https
+
+.col
+  .card
+    .card-body
+      h5
+        = image_tag tweet.target_user.profile_image_url_https
+br/
