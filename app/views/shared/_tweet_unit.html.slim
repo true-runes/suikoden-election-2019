@@ -1,17 +1,23 @@
-- a = TargetTweet.result_tweets[0].target_user.name
-- b = TargetTweet.result_tweets[0].target_user.screen_name
-- c = TargetTweet.result_tweets[0].text
-- d = TargetTweet.result_tweets[0].tweeted_at
+- media_uris = media_uris(tweet)
 
-/ media_uri_https_01
-/ media_uri_https_02
-/ media_uri_https_03
-/ media_uri_https_04
-/ profile_image_url_https
-
-.col
-  .card
-    .card-body
-      h5
-        = image_tag tweet.target_user.profile_image_url_https
+.row
+  .col
+    .card
+      .card-body
+        .row
+          .col
+            = image_tag tweet.target_user.profile_image_url_https
+            = " #{tweet.target_user.name} ("
+            = link_to "@#{tweet.target_user.screen_name}", "https://twitter.com/#{tweet.target_user.screen_name}", target: '_new'
+            = ')'
+        .row
+          .col
+            p = ''
+        = simple_format remove_t_co(tweet.text)
+        = link_to formatted_time_description(tweet.tweeted_at), "https://twitter.com/#{tweet.target_user.screen_name}/status/#{tweet.tweet_id}", target: '_new'
+        .row
+          .col
+            - media_uris.each do |media_uri|
+              - unless media_uri.blank?
+                = image_tag media_uri
 br/
