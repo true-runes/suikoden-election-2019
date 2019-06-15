@@ -16,6 +16,10 @@ module ApplicationHelper
     text.gsub(/https:\/\/t\.co\/[0-9a-zA-Z]+/, '')
   end
 
+  def remove_recommended_line_hashtag(text)
+    text.gsub(/#幻水推し台詞/, '')
+  end
+
   # TODO: データベース設計が破滅しているのでここで吸収している
   def media_uris(target_tweet_object)
     media_uris = []
