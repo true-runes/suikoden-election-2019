@@ -1,9 +1,9 @@
 module Constants
-  if Rails.env.development?
-    SITE_NAME = '[Dev] 幻水総選挙2019'.freeze
-  else
-    SITE_NAME = '幻水総選挙2019'.freeze
-  end
+  SITE_NAME = if Rails.env.development?
+                '[Dev] 幻水総選挙2019'.freeze
+              else
+                '幻水総選挙2019'.freeze
+              end
 
   FINAL_PARTICIPANTS_NUMBER_VIA_TWEET = 1749
   FINAL_PARTICIPANTS_NUMBER_VIA_DM    = 158
