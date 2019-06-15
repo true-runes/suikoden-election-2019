@@ -9,7 +9,7 @@ class TargetTweet < ApplicationRecord
   end_vote_time   = '2019-06-09 10:00:00 JST'
 
   start_result_announcement_time = '2019-06-15 18:00:00 JST'
-  end_result_announcement_time   = '2019-06-15 23:59:59 JST'
+  end_result_announcement_time   = '2019-06-16 09:00:00 JST'
 
   # TODO: 2014年の書き方であり、もっとスマートな書き方が絶対にあるはずだろ
   # https://stackoverflow.com/questions/20942672/rails-scope-returns-all-instead-of-nil
