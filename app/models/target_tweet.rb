@@ -28,6 +28,7 @@ class TargetTweet < ApplicationRecord
           where(is_retweet: false).
           where.not(target_user_id: TargetUser.gensosenkyo.id)
         }
+<<<<<<< HEAD
 
   scope :oshi_serif,
         -> {
@@ -35,4 +36,14 @@ class TargetTweet < ApplicationRecord
           where.not(target_user_id: TargetUser.gensosenkyo.id).
           where(collect_tweet_way_id: 4) # TODO: ハードコーディングを撤廃する
         }
+||||||| merged common ancestors
+=======
+
+  scope :gensui_oshi_serifu,
+        -> {
+          where(is_retweet: false).
+          where.not(target_user_id: TargetUser.gensosenkyo.id).
+          where(collect_tweet_way_id: 4)
+        }
+>>>>>>> development
 end
