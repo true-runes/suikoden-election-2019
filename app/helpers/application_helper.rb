@@ -20,21 +20,10 @@ module ApplicationHelper
   def media_uris(target_tweet_object)
     media_uris = []
 
-    unless target_tweet_object.media_url_https_01.nil?
-      media_uris << target_tweet_object.media_url_https_01
-    end
-
-    unless target_tweet_object.media_url_https_01.nil?
-      media_uris << target_tweet_object.media_url_https_02
-    end
-
-    unless target_tweet_object.media_url_https_01.nil?
-      media_uris << target_tweet_object.media_url_https_03
-    end
-
-    unless target_tweet_object.media_url_https_01.nil?
-      media_uris << target_tweet_object.media_url_https_04
-    end
+    media_uris << target_tweet_object.media_url_https_01 unless target_tweet_object.media_url_https_01.nil?
+    media_uris << target_tweet_object.media_url_https_02 unless target_tweet_object.media_url_https_01.nil?
+    media_uris << target_tweet_object.media_url_https_03 unless target_tweet_object.media_url_https_01.nil?
+    media_uris << target_tweet_object.media_url_https_04 unless target_tweet_object.media_url_https_01.nil?
 
     media_uris
   end
