@@ -1,0 +1,23 @@
+- media_uris = media_uris(tweet)
+
+.row
+  .col
+    .card
+      .card-body
+        .row
+          .col
+            = image_tag tweet.target_user.profile_image_url_https
+            = " #{tweet.target_user.name} ("
+            = link_to "@#{tweet.target_user.screen_name}", "https://twitter.com/#{tweet.target_user.screen_name}", target: '_new'
+            = ')'
+        .row
+          .col
+            p = ''
+        = simple_format remove_t_co(tweet.text)
+        = link_to formatted_time_description(tweet.tweeted_at), "https://twitter.com/#{tweet.target_user.screen_name}/status/#{tweet.tweet_id}", target: '_new'
+        .row
+          .col
+            - media_uris.each do |media_uri|
+              - unless media_uri.blank?
+                = image_tag media_uri
+br/
