@@ -6,12 +6,12 @@ module Constants
               end
 
   STAFFS = [
+    { name: 'キネコ', screen_name: 'kineko_27', icon_file: '@kineko_27_icon' },
     { name: '皓月', screen_name: 'k_otare', icon_file: '@k_otare_icon' },
     { name: 'さいり', screen_name: 'mizuhara0127', icon_file: '@mizuhara0127_icon' },
+    { name: 'たっきー', screen_name: 'potch_rune', icon_file: '@potch_rune_icon' },
     { name: '田中まさはる', screen_name: '?????', icon_file: '@gomikoro_icon' },
     { name: '若dnt子', screen_name: 'wakadante', icon_file: '@wakadante_icon' },
-    { name: 'たっきー', screen_name: 'potch_rune', icon_file: '@potch_rune_icon' },
-    { name: 'キネコ', screen_name: 'kineko_27', icon_file: '@kineko_27_icon' },
   ].freeze
 
   FINAL_PARTICIPANTS_NUMBER_VIA_TWEET = 1749
