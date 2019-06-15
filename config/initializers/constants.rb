@@ -6,11 +6,11 @@ module Constants
               end
 
   STAFFS = [
-    { name: '皓月様', screen_name: 'k_otare', icon_file: '@k_otare_icon' },
-    { name: 'さいり様', screen_name: 'mizuhara0127', icon_file: '@mizuhara0127_icon' },
-    { name: '田中まさはる様', screen_name: '?????', icon_file: '@gomikoro_icon' },
-    { name: '若dnt子様', screen_name: 'wakadante', icon_file: '@wakadante_icon' },
-    { name: 'たっきー様', screen_name: 'potch_rune', icon_file: '@potch_rune_icon' },
+    { name: '皓月', screen_name: 'k_otare', icon_file: '@k_otare_icon' },
+    { name: 'さいり', screen_name: 'mizuhara0127', icon_file: '@mizuhara0127_icon' },
+    { name: '田中まさはる', screen_name: '?????', icon_file: '@gomikoro_icon' },
+    { name: '若dnt子', screen_name: 'wakadante', icon_file: '@wakadante_icon' },
+    { name: 'たっきー', screen_name: 'potch_rune', icon_file: '@potch_rune_icon' },
     { name: 'キネコ', screen_name: 'kineko_27', icon_file: '@kineko_27_icon' },
   ].freeze
 
