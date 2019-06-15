@@ -1,0 +1,26 @@
+- @page_name = '最終順位'
+
+.container
+  = render 'shared/navbar'
+  .row
+    .col
+      p = ''
+  .row
+    .col
+      h3 = '最終順位'
+  .row
+    .col
+      p = ''
+  .table-responsive
+    table.table.table-striped.table-hover
+      thead.thead-dark
+        tr
+          th scope="col"
+            = "順位"
+          th scope="col"
+            = "キャラ名"
+          th scope="col"
+            = "票数"
+      tbody
+        = render partial: 'shared/final_ranking_unit', collection: @final_ranking_from_csv, as: :final_ranking
+  = render 'shared/footer'

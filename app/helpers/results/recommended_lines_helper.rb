@@ -1,0 +1,2 @@
+module Results::RecommendedLinesHelper
+end
