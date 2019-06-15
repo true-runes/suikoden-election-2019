@@ -1,0 +1,2 @@
+class ResultTweetsController < ApplicationController
+end

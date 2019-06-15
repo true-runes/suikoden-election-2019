@@ -8,6 +8,8 @@
         ul.navbar-nav.mr-auto.mt-2.mt-lg-0
           li class = "nav-item #{'active font-weight-bold' if current_page?(root_path)}"
               = link_to 'ホーム', root_path, class: 'nav-link', style: 'color: black;'
+          li class = "nav-item"
+              = link_to '開票ツイート', '#', class: 'nav-link'
           li class = "nav-item #{'active font-weight-bold' if current_page?(pages_check_my_vote_path)}"
               = link_to '投票チェック', pages_check_my_vote_path, class: 'nav-link', style: 'color: black;'
           / li class = "nav-item"
