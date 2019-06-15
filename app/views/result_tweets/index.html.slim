@@ -11,6 +11,11 @@
   .row
     .col
       p = ''
-  = paginate @result_tweets
+  .row
+    .col
+      = paginate @result_tweets
   = render partial: 'shared/tweet_unit', collection: @result_tweets, as: :tweet
+  .row
+    .col
+      = paginate @result_tweets
   = render 'shared/footer'
