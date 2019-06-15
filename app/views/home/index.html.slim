@@ -23,10 +23,21 @@
     .col
       .card
         .card-body
-          h6
-            = '現在の投票人数（ツイート経由） '
+          h5
+            = '投票人数（確定） '
           h2
-            = "#{TargetTweet.valid_vote.count} 人"
+            = "#{Constants::FINAL_PARTICIPANTS_NUMBER_VIA_ALL} 人"
+          h5
+            = "（ツイート経由: #{Constants::FINAL_PARTICIPANTS_NUMBER_VIA_TWEET} 人 / DM経由: #{Constants::FINAL_PARTICIPANTS_NUMBER_VIA_DM} 人）"
+
+          hr/
+
+          h5
+            = '投票数（確定） '
+          h2
+            = "#{Constants::FINAL_VOTE_NUMBER_VIA_ALL} 票"
+          h5
+            = "（ツイート経由: #{Constants::FINAL_VOTE_NUMBER_VIA_TWEET} 票 / DM経由: #{Constants::FINAL_VOTE_NUMBER_VIA_DM} 票）"
   .row
     .col
       = image_tag 'gensosenkyo_2019_title.jpg', class: 'w-100 img-responsive center-block'
@@ -60,7 +71,7 @@ javascript:
       remainingFlame  = Math.floor(period / (10));
 
       shownText = '';
-      shownText += '<h6>開票まで あと</h6>';
+      shownText += '<h5>開票まで あと</h5>';
       shownText += '<h2>';
       shownText += '<span class="d">' + remainingDay    + '</span>' + '日';
       shownText += '<span class="h">' + remainingHour   + '</span>' + '時間';
