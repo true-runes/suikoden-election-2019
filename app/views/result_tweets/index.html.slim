@@ -13,4 +13,5 @@
       p = ''
   = paginate @result_tweets
   = render partial: 'shared/tweet_unit', collection: @result_tweets, as: :tweet
+  = paginate @result_tweets
   = render 'shared/footer'
