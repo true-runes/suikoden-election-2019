@@ -1,4 +1,4 @@
-class Results::RankingDecorator < Draper::Decorator
+class Results::FinalRankingDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :result_tweets, only: [:index]
 
   namespace :results do
-    match 'ranking', to: 'ranking#index', via: [:get]
+    match 'final_ranking', to: 'final_ranking#index', via: [:get]
     match 'recommended_lines', to: 'recommended_lines#index', via: [:get]
   end
 
