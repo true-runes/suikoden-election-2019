@@ -3,6 +3,8 @@ class TargetTweet < ApplicationRecord
   belongs_to :target_user
   # belongs_to :collect_tweet_ways
 
+  paginates_per 10
+
   start_vote_time = '2019-06-07 21:00:00 JST'
   end_vote_time   = '2019-06-09 10:00:00 JST'
 
@@ -22,6 +24,7 @@ class TargetTweet < ApplicationRecord
       screen_name
   end
 
+  # HACK: 複数形のほうが良かったかも
   scope :valid_vote,
         -> {
           where(tweeted_at: start_vote_time..end_vote_time).
@@ -34,5 +37,13 @@ class TargetTweet < ApplicationRecord
           where(is_retweet: false).
           where.not(target_user_id: TargetUser.gensosenkyo.id).
           where(collect_tweet_way_id: 4)
+        }
+
+  scope :result_tweets,
+        -> {
+          where(tweeted_at: start_vote_time..end_vote_time).
+          where(is_retweet: false).
+          # where(target_user_id: TargetUser.gensosenkyo.id)
+          where.not(target_user_id: TargetUser.gensosenkyo.id)
         }
 end

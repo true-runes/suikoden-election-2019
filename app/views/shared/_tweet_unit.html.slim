@@ -1,0 +1,38 @@
+- media_uris = media_uris(tweet)
+
+.row
+  .col
+    .card
+      .card-body
+        .row
+          .col
+            = image_tag tweet.target_user.profile_image_url_https
+            = " #{tweet.target_user.name} ("
+            = link_to "@#{tweet.target_user.screen_name}", "https://twitter.com/#{tweet.target_user.screen_name}", target: '_new'
+            = ')'
+        .row
+          .col
+            p = ''
+        = simple_format remove_t_co(tweet.text)
+        = link_to formatted_time_description(tweet.tweeted_at), "https://twitter.com/#{tweet.target_user.screen_name}/status/#{tweet.tweet_id}", target: '_new'
+        .row
+          .col
+            .row.justify-content-start.align-items-end
+              - media_uris.each_with_index do |media_uri, i|
+                - if i < 1
+                  .row
+                    .col
+                      p = ''
+
+                - unless media_uri.blank?
+                  - data_target_name = "modal_image_#{tweet_counter}_#{i}"
+                  .dummy data-toggle="modal" data-target="##{data_target_name}"
+                      .col
+                        = image_tag media_uri, class: 'img-fluid img-thumbnail rounded', size: '64x64'
+
+                  .modal.fade id="#{data_target_name}" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true"
+                    .modal-dialog role="document"
+                      .modal-content
+                        .modal-header
+                          = image_tag media_uri, class: 'img-fluid img-thumbnail rounded'
+br/
