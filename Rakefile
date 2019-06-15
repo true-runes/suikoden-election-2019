@@ -9,7 +9,7 @@ namespace :oshi_serifu do
   desc "Insert 'Gensui Oshi-Serifu to database'"
   task insert: :environment do
     CollectTweets::Execute.new.call_with_tweet_ids(
-      Constants::GENSUI_OSHI_SERIFU_TWEET_IDS,
+      Constants::MERGED_GENSUI_OSHI_SERIFU_TWEET_IDS,
       collect_way: 4,
       parameter: 'gensui_oshi_serifu',
     )
