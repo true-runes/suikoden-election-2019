@@ -3,5 +3,5 @@ linter:
     gems:
       - "rubocop-rails"
     config: "config/.rubocop.yml"
-    rails: false
+    rails: true
     safe: true
