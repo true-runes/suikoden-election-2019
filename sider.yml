@@ -1,0 +1,8 @@
+# FIXME: 雰囲気で書いているので修正する https://help.sider.review/tools/ruby/rubocop
+linter:
+  rubocop:
+    gems:
+      - "rubocop-rails"
+    config: ".rubocop.yml"
+    rails: true
+    safe: true
