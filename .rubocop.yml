@@ -1,5 +1,5 @@
-Rails:
-  Enabled: true
+require:
+  - rubocop-rails
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -93,3 +93,7 @@ Style/GuardClause:
 
 Style/TrailingCommaInArguments:
   Enabled: false # これは無効にしたほうが Ruby らしいだろう
+
+Rails/HelperInstanceVariable:
+  # FIXME: app/helpers/application_helper.rb で使っているので早めに直す
+  Enabled: false
