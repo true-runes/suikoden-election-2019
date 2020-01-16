@@ -8,12 +8,12 @@ def visit_with_http_auth(target_path)
 end
 
 RSpec.feature 'ベーシック認証', type: :system do
-  scenario '登録されているIDとパスワードで認証が成功すること' do
+  xscenario '登録されているIDとパスワードで認証が成功すること' do
     visit_with_http_auth root_path
     expect(page).to have_content '幻水総選挙2019'
   end
 
-  scenario '登録されていないIDとパスワードでは認証が失敗すること' do
+  xscenario '登録されていないIDとパスワードでは認証が失敗すること' do
     username    = 'foo'
     password    = 'bar'
     target_path = root_path
