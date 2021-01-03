@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '~> 5.2.3'
 
 group :test, :development, :production do
-  gem 'bootsnap', '>= 1.1.0', require: false
+  gem 'bootsnap', '>= 1.4.5', require: false
   gem 'jbuilder', '~> 2.5'
   gem 'jquery-rails'
   gem 'sass-rails', '~> 5.0'
