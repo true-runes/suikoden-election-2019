@@ -16,6 +16,7 @@ public/assets/
 /config/master.key
 yarn-error.log
 .byebug_history
-.env
+.env*
 .envrc
 config/google_drive_api.json
+circleci_local.sh

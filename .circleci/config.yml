@@ -5,8 +5,11 @@ jobs:
     - image: circleci/ruby:2.6.3-node-browsers-legacy
       environment:
       - RAILS_ENV: test
-      - PGHOST: 127.0.0.1
-      - PGUSER: root
+      - PG_HOST: 127.0.0.1
+      - PG_USERNAME: root
+      - PG_PASSWORD: root
+      - BASIC_AUTH_USERNAME: hogehoge
+      - BASIC_AUTH_PASSWORD: fugafuga
       - SELENIUM_CHROME_HEADLESS: true
     - image: circleci/postgres:11.2
       environment:
@@ -20,48 +23,52 @@ jobs:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
         - v1-dependencies-
     - run:
-        name: Install System Dependencies
+        name: Install system dependencies
         command: |
           sudo apt-get install fonts-migmix
     - run:
         name: Install Chrome
         command: |
+          sudo apt-get update
           sudo apt install -y libappindicator3-1
+          sudo apt-get install -y libvulkan1 udev libudev1 libu2f-udev libgbm1 libwayland-server0
+
           curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i google-chrome.deb
           sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
           rm google-chrome.deb
           /opt/google/chrome/google-chrome --version
     - run:
-        name: Install appropriate version's Bundler whose number is written in Gemfile.lock
+        name: Install appropriate version's Bundler whose number is written in 'Gemfile.lock'
         command: |
-          gem install bundler:2.0.1
+          gem install bundler:2.0.2
     - run:
-        name: install gems written in Gemfile
+        name: Install gems written in Gemfile
         command: |
           bundle install --jobs=4 --retry=3 --path vendor/bundle
     - run:
-        name: yarn install (temporary)
+        name: Execute yarn install
+        # TODO: 調整の必要あり
         command: yarn install
     - save_cache:
         key: v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
         paths:
           - vendor/bundle
           - node_modules
-    # Database setup
-    # - run:
-    #     name: Wait for booting DBMS
-    #     command: dockerize -wait tcp://127.0.0.1:5432 -timeout 30s
-    # - run:
-    #     name: Database setup
-    #     command: bin/rails db:create; bin/rails db:migrate
     - run:
-        name: RuboCop
-        command: bundle exec rubocop --rails
-    # - run:
-    #     name: Run Rails Test
-    #     command: |
-    #       mkdir /tmp/test-results
-    #       bundle exec rspec --format progress \
-    #                       $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-    #     when: always # RuboCopは失敗しても通す（WARNING以上は落としてもいいかもしれない）
+        name: Wait for booting DBMS
+        command: dockerize -wait tcp://127.0.0.1:5432 -timeout 10s
+    - run:
+        # db:migrate の前に実行しておかないと Schemefile の ダブルクォート でコケる
+        name: Execute RuboCop
+        command: bundle exec rubocop
+    - run:
+        name: Setup database
+        command: bin/rails db:create; bin/rails db:migrate;
+    - run:
+        name: Run Rails Test
+        command: |
+          mkdir /tmp/test-results
+          bundle exec rspec --format progress \
+                          $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+        when: always # RuboCopは失敗しても通す（WARNING以上は落としてもいいかもしれない）
