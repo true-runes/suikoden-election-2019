@@ -7,7 +7,7 @@ group :test, :development, :production do
   gem 'bootsnap', '>= 1.4.5', require: false
   gem 'jbuilder', '~> 2.5'
   gem 'jquery-rails'
-  gem 'sass-rails', '~> 5.0'
+  gem 'sass-rails', '~> 6.0'
   gem 'turbolinks', '~> 5'
   gem 'uglifier', '>= 1.3.0'
 
