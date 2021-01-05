@@ -1,11 +1,11 @@
 version: 2
 updates:
-- package_manager: "javascript"
+- package-ecosystem: npm
   directory: "/"
   schedule:
     interval: daily
   open-pull-requests-limit: 10
-- package_manager: "ruby:bundler"
+- package-ecosystem: bundler
   directory: "/"
   schedule:
     interval: daily
