@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/corselia/suikoden-election-2019.svg?style=svg)](https://circleci.com/gh/corselia/suikoden-election-2019)
+[![CircleCI](https://circleci.com/gh/nikukyugamer/suikoden-election-2019.svg?style=svg)](https://circleci.com/gh/nikukyugamer/suikoden-election-2019)
 
 # Suikoden Election 2019
 - Suikoden Election 2019
