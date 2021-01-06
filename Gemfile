@@ -57,7 +57,3 @@ group :test do
   gem 'puma'
   gem 'selenium-webdriver'
 end
-
-# gem 'activerecord-import' # BULK INSERT をするための gem https://qiita.com/xend/items/79184ded56158ea1b97a
-# gem 'simple_form'
-# gem 'search_cop'
