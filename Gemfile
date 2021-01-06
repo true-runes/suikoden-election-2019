@@ -18,7 +18,7 @@ group :test, :development, :production do
   gem 'gon'
   gem 'google_drive'
   gem 'kaminari'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'pg'
   gem 'pry-coolline'
   gem 'pry-rails'
@@ -57,7 +57,3 @@ group :test do
   gem 'puma'
   gem 'selenium-webdriver'
 end
-
-# gem 'activerecord-import' # BULK INSERT をするための gem https://qiita.com/xend/items/79184ded56158ea1b97a
-# gem 'simple_form'
-# gem 'search_cop'
