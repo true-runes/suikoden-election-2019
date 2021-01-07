@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-    - image: circleci/ruby:2.6.3-node-browsers-legacy
+    - image: circleci/ruby:2.7.2
       environment:
       - RAILS_ENV: test
       - PG_HOST: 127.0.0.1
