@@ -5,16 +5,15 @@ jobs:
     - image: circleci/ruby:2.7.2
       environment:
       - RAILS_ENV: test
-      - PG_HOST: 127.0.0.1
-      - PG_USERNAME: root
-      - PG_PASSWORD: root
       - BASIC_AUTH_USERNAME: hogehoge
       - BASIC_AUTH_PASSWORD: fugafuga
       - SELENIUM_CHROME_HEADLESS: true
     - image: circleci/postgres:11.2
       environment:
       - POSTGRES_USER: root
+      - POSTGRES_PASSWORD: root
       - POSTGRES_DB: gss2019_test
+      - POSTGRES_HOST: 127.0.0.1
     working_directory: ~/repo
     steps:
     - checkout
