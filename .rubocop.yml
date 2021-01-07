@@ -12,11 +12,7 @@ Style/TrailingCommaInArrayLiteral:
   Enabled: false # 有効にすると見た目がいいレイアウトにした際に怒られるため無効にする
   # EnforcedStyleForMultiline: consistent_comma
 
-Style/BracesAroundHashParameters:
-  Enabled: false # 有効にすると見た目がいいレイアウトにした際に怒られるため無効にする
-  # EnforcedStyle: context_dependent
-
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Enabled: false # 有効にした場合、コメントが最終行だとどんな設定にしてても怒られるため無効にする
 
 Style/AsciiComments:
@@ -79,7 +75,7 @@ Style/Lambda:
 Style/UnlessElse:
   Enabled: false # TODO: これは個人的に可読性が低いと思うので無効にする……が微妙かも
 
-Style/UnneededInterpolation:
+Style/RedundantInterpolation:
   Enabled: false # 好みの問題
 
 Style/RescueStandardError:
@@ -96,4 +92,25 @@ Style/TrailingCommaInArguments:
 
 Rails/HelperInstanceVariable:
   # FIXME: app/helpers/application_helper.rb で使っているので早めに直す
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Style/KeywordParametersOrder:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/GlobalStdStream:
   Enabled: false
