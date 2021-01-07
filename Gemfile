@@ -1,15 +1,16 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '~> 6.1.0'
+ruby '2.7.2'
+gem 'rails'
 
 group :test, :development, :production do
-  gem 'bootsnap', '>= 1.4.5', require: false
-  gem 'jbuilder', '~> 2.10'
+  gem 'bootsnap', require: false
+  gem 'jbuilder'
   gem 'jquery-rails'
-  gem 'sass-rails', '~> 6.0'
-  gem 'turbolinks', '~> 5'
-  gem 'uglifier', '>= 1.3.0'
+  gem 'sass-rails'
+  gem 'turbolinks'
+  gem 'uglifier'
 
   gem 'bootstrap'
   gem 'bullet'
@@ -37,8 +38,8 @@ end
 
 group :development do
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'spring-watcher-listen'
+  gem 'web-console'
 
   gem 'capistrano-rails', require: false
   gem 'capistrano-rails-console', require: false
@@ -53,7 +54,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
   gem 'puma'
   gem 'selenium-webdriver'
 end
