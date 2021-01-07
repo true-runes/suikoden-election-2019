@@ -1,12 +1,24 @@
 on: [push]
 name: Suikoden Election 2019
 jobs:
-  eiyuden_chronicle_rewards_github_actions:
+  suikoden_election_2019_github_actions:
     name: Suikoden Election 2019 CI
     runs-on: ubuntu-latest
     container:
       image: ruby:2.7.2
     steps:
     - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: bundle install
+    - name: Bundler cache
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+    # - name: Install appropriate version's Bundler
+    #   run: gem install bundler:2.1.4
+    - name: $ bundle install
+      run: |
+        bundle config path vendor/bundle
+        # bundle _2.1.4_ install --jobs=4 --retry=3
+        bundle install --jobs=4 --retry=3
