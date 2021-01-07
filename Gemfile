@@ -21,6 +21,7 @@ group :test, :development, :production do
   gem 'kaminari'
   gem 'listen'
   gem 'pg'
+  gem 'pry', '0.12.2'
   gem 'pry-coolline'
   gem 'pry-rails'
   gem 'rb-readline'
