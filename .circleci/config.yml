@@ -29,23 +29,31 @@ jobs:
     - run:
         name: Install Chrome
         command: |
-          sudo apt-get update
+          sudo apt update
           sudo apt install -y libappindicator3-1
-          sudo apt-get install -y libvulkan1 udev libudev1 libu2f-udev libgbm1 libwayland-server0
-
+          sudo apt install -y libvulkan1 udev libudev1 libu2f-udev libgbm1 libwayland-server0 fonts-liberation libasound2 libnspr4 libnss3 xdg-utils
           curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i google-chrome.deb
           sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
           rm google-chrome.deb
           /opt/google/chrome/google-chrome --version
     - run:
+        # v2.1.4 for Heroku
         name: Install appropriate version's Bundler whose number is written in 'Gemfile.lock'
         command: |
-          gem install bundler:2.0.2
+          gem install bundler:2.1.4
     - run:
+        # v2.1.4 for Heroku
         name: Install gems written in Gemfile
         command: |
-          bundle install --jobs=4 --retry=3 --path vendor/bundle
+          bundle _2.1.4_ install --jobs=4 --retry=3 --path vendor/bundle
+    - run:
+        name: Install Yarn
+        command: |
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          sudo apt update
+          sudo apt install yarn
     - run:
         name: Execute yarn install
         # TODO: 調整の必要あり
