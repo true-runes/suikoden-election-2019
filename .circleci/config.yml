@@ -8,7 +8,7 @@ jobs:
       - BASIC_AUTH_USERNAME: hogehoge
       - BASIC_AUTH_PASSWORD: fugafuga
       - SELENIUM_CHROME_HEADLESS: true
-    - image: circleci/postgres:11.13
+    - image: circleci/postgres:13.4
       environment:
       - POSTGRES_USER: root
       - POSTGRES_PASSWORD: root
