@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-    - image: circleci/ruby:2.7.2
+    - image: circleci/ruby:2.7.5
       environment:
       - RAILS_ENV: test
       - BASIC_AUTH_USERNAME: hogehoge
@@ -21,6 +21,10 @@ jobs:
         keys:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
         - v1-dependencies-
+    - run:
+        name: Workaround for no-libffi.so.6 in the latest Ubuntu
+        command: |
+          sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0 /usr/lib/x86_64-linux-gnu/libffi.so.6
     - run:
         name: Install system dependencies
         command: |
