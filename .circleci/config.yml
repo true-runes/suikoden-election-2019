@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-    - image: circleci/ruby:2.7.5
+    - image: circleci/ruby:3.0.3
       environment:
       - RAILS_ENV: test
       - BASIC_AUTH_USERNAME: hogehoge
