@@ -1,2 +1,4 @@
-module Pages::CheckMyVoteHelper
+module Pages
+  module CheckMyVoteHelper
+  end
 end

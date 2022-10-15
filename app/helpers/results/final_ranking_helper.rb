@@ -1,2 +1,4 @@
-module Results::FinalRankingHelper
+module Results
+  module FinalRankingHelper
+  end
 end

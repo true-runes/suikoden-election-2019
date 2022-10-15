@@ -10,9 +10,9 @@ class TargetUser < ApplicationRecord
   # TODO: この first って挟むの非生産的なので、きっと何かスマートな方法がある
   # TODO: => find_by がまさにそれらしい（戻り値のクラスに注意）
   def self.gensosenkyo
-    TargetUser.
-      where(twitter_user_id: TWITTER_USER_ID_GENSOSENKYO)&.
-      first
+    TargetUser
+      .where(twitter_user_id: TWITTER_USER_ID_GENSOSENKYO)
+      &.first
   end
 
   def self.search_tweet_by_screen_name(screen_name)
