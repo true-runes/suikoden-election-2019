@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/AbcSize, Layout/LineLength
+# rubocop:disable Metrics/AbcSize, Layout/LineLength, Style/FetchEnvVar
 # TODO: 全てに渡って DRY でない
 module Spreadsheets
   class WriteToSheet
@@ -76,4 +76,4 @@ module Spreadsheets
     end
   end
 end
-# rubocop:enable Metrics/AbcSize, Layout/LineLength
+# rubocop:enable Metrics/AbcSize, Layout/LineLength, Style/FetchEnvVar

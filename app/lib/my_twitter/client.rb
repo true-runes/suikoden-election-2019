@@ -1,3 +1,4 @@
+# rubocop:disable Style/FetchEnvVar
 module MyTwitter
   module Client
     def initialize
@@ -10,3 +11,4 @@ module MyTwitter
     end
   end
 end
+# rubocop:enable Style/FetchEnvVar
