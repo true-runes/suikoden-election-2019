@@ -4,17 +4,17 @@ jobs:
   suikoden_election_2019_github_actions:
     name: Suikoden Election 2019 CI
     runs-on: ubuntu-latest
-    container:
-      image: ruby:2.7.5
+    strategy:
+      matrix:
+        ruby-version: ['2.7.5']
     steps:
-    - uses: actions/checkout@v3
-    - name: Bundler cache
-      uses: actions/cache@v3
+    - name: コードをチェックアウトする
+      uses: actions/checkout@v3
+    - name: Ruby のセットアップを行う
+      uses: ruby/setup-ruby@v1
       with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true
     - name: Install appropriate version's Bundler
       run: gem install bundler:2.1.4
     - name: $ bundle install
