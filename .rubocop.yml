@@ -1,116 +1,51 @@
+# inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  DisplayCopNames: true
+  Exclude:
+  - 'vendor/**/*'
+  - 'node_modules/**/*'
+  - 'spec/**/*'
+  - 'db/schema.rb'
+  - 'db/**/*'
+  - 'config/**/*'
+  - 'Guardfile'
+  - 'bin/**/*'
+  - 'tmp/**/*'
+
+Style/Documentation:
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/TrailingCommaInHashLiteral:
-  Enabled: false # 有効にすると見た目がいいレイアウトにした際に怒られるため無効にする
-  # EnforcedStyleForMultiline: consistent_comma
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: single_quotes
 
 Style/TrailingCommaInArrayLiteral:
-  Enabled: false # 有効にすると見た目がいいレイアウトにした際に怒られるため無効にする
-  # EnforcedStyleForMultiline: consistent_comma
-
-Layout/TrailingEmptyLines:
-  Enabled: false # 有効にした場合、コメントが最終行だとどんな設定にしてても怒られるため無効にする
-
-Style/AsciiComments:
-  Enabled: false
-
-Metrics/LineLength:
-  Max: 200 # 数字に特に根拠はない
-
-Style/NumericLiterals:
-  Enabled: false
-
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    default: ()
-    '%i': []
-    '%I': []
-    '%r': {}
-    '%w': ()
-    '%W': []
-
-Style/Documentation:
-  Enabled: false # 一行目に class って書いてもいいでしょ
-
-Style/ClassAndModuleChildren:
-  Enabled: false # 暫定的に false にする（名前空間関連）
-
-Metrics/MethodLength:
-  Enabled: false # メソッドの長さが長いと怒られる（有用なので後で調整すること）
-
-Rails/Output:
-  Enabled: false # プリントデバッグに使いたいので勘弁してくれ
-
-Style/RegexpLiteral:
-  Enabled: false # 有効にすると Lint/Syntax で怒られる？ので無効化
-
-Style/MixinUsage:
-  Enabled: false # include は class か module にくるまないと怒られるんだけど、とりあえず無効化
-
-Layout/EmptyLinesAroundBlockBody:
-  Enabled: false # ブロックの周りに余計な空行があると怒られるんだけど、とりあえず無効化
-
-Metrics/AbcSize:
-  Enabled: false # いろいろ難しいので一律無効にする
+  EnforcedStyleForMultiline: comma
 
 Metrics/BlockLength:
-  Enabled: false # スキーマファイルでガンガンエラーが出るために無効にする
+  Max: 52
 
-Style/SymbolArray:
-  Enabled: false # これは個人的に可読性が低いと思うので無効にする
-
-Layout/DotPosition:
-  Enabled: false # これは個人的に可読性が低いと思うので無効にする
-
-Layout/MultilineMethodCallIndentation:
-  Enabled: false # これは個人的に可読性が低いと思うので無効にする
-
-Style/Lambda:
-  Enabled: false # TODO: これは個人的に可読性が低いと思うので無効にする……が微妙かも
-
-Style/UnlessElse:
-  Enabled: false # TODO: これは個人的に可読性が低いと思うので無効にする……が微妙かも
-
-Style/RedundantInterpolation:
-  Enabled: false # 好みの問題
-
-Style/RescueStandardError:
-  Enabled: false # TODO: まあちゃんと書くべきだが……
-
-Metrics/ModuleLength:
-  Enabled: false # 初期データなどで大量のデータを Constants に入れることもある
-
-Style/GuardClause:
-  Enabled: false # 可読性重視
-
-Style/TrailingCommaInArguments:
-  Enabled: false # これは無効にしたほうが Ruby らしいだろう
-
-Rails/HelperInstanceVariable:
-  # FIXME: app/helpers/application_helper.rb で使っているので早めに直す
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Enabled: false
-
-Bundler/OrderedGems:
-  Enabled: false
+Metrics/ClassLength:
+  Max: 500
 
 Metrics/CyclomaticComplexity:
-  Enabled: false
+  Max: 16
 
-Rails/FilePath:
-  Enabled: false
+Metrics/MethodLength:
+  Max: 65
 
-Style/KeywordParametersOrder:
-  Enabled: false
+Metrics/PerceivedComplexity:
+  Max: 17
 
-Naming/VariableNumber:
-  Enabled: false
-
-Style/GlobalStdStream:
-  Enabled: false
+Metrics/ModuleLength:
+  Max: 160
