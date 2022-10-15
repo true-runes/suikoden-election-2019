@@ -1,2 +1,4 @@
-module Pages::StaffsHelper
+module Pages
+  module StaffsHelper
+  end
 end

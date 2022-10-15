@@ -1,2 +1,4 @@
-module Results::RecommendedLinesHelper
+module Results
+  module RecommendedLinesHelper
+  end
 end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Heroku にデプロイするので Gemfile の中で固定する
-ruby '2.7.5'
+ruby '2.7.6'
 
 gem 'rails'
 
@@ -43,10 +43,10 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'web-console'
 
+  gem 'capistrano3-unicorn', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-rails-console', require: false
   gem 'capistrano-rbenv', require: false
-  gem 'capistrano3-unicorn', require: false
 
   gem 'awesome_print'
   gem 'better_errors'
