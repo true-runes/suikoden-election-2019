@@ -11,7 +11,7 @@ namespace :oshi_serifu do
     CollectTweets::Execute.new.call_with_tweet_ids(
       Constants::MERGED_GENSUI_OSHI_SERIFU_TWEET_IDS,
       collect_way: 4,
-      parameter: 'gensui_oshi_serifu',
+      parameter: 'gensui_oshi_serifu'
     )
   end
 

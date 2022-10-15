@@ -1,8 +1,9 @@
+# rubocop:disable Rails/HelperInstanceVariable
 module ApplicationHelper
   # @page_name は各ビューの中で定義する
   def page_title
     if @page_name.nil?
-      "#{Constants::SITE_NAME}"
+      Constants::SITE_NAME.to_s
     else
       "#{Constants::SITE_NAME} - #{@page_name}"
     end
@@ -13,7 +14,7 @@ module ApplicationHelper
   end
 
   def remove_t_co(text)
-    text.gsub(/https:\/\/t\.co\/[0-9a-zA-Z]+/, '')
+    text.gsub(%r{https://t\.co/[0-9a-zA-Z]+}, '')
   end
 
   def remove_recommended_line_hashtag(text)
@@ -32,3 +33,4 @@ module ApplicationHelper
     media_uris
   end
 end
+# rubocop:enable Rails/HelperInstanceVariable
