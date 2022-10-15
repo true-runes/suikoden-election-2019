@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+# Heroku にデプロイするので Gemfile の中で固定する
+ruby '2.7.5'
+
 gem 'rails'
 
 group :test, :development, :production do
@@ -21,8 +23,7 @@ group :test, :development, :production do
   gem 'kaminari'
   gem 'listen'
   gem 'pg'
-  gem 'pry', '0.12.2'
-  gem 'pry-coolline'
+  gem 'pry'
   gem 'pry-rails'
   gem 'rb-readline'
   gem 'slim-rails'
