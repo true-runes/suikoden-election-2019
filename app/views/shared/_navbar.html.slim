@@ -1,6 +1,6 @@
 .row
   .col
-    nav.navbar.fixed-top.navbar-expand-lg.navbar-light style="background-color: #7fffd4;"
+    nav.navbar.fixed-top.navbar-expand-lg.navbar-light style="background-color: #7fffd4; padding: 10px;"
       = link_to Constants::SITE_NAME, root_path, class: 'navbar-brand mb-0 h1'
       button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"
         span.navbar-toggler-icon
@@ -9,11 +9,11 @@
           li class = "nav-item #{'active font-weight-bold' if current_page?(root_path)}"
               = link_to 'ホーム', root_path, class: 'nav-link', style: 'color: black;'
 
-          li class = "nav-item dropdown #{'active font-weight-bold' if current_page?(results_final_ranking_path) || current_page?(results_recommended_lines_path)}"
-            = link_to '開票結果', '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdownMenuLink', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false', style: 'color: black;'
-            .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-              = link_to '最終順位', results_final_ranking_path, class: "dropdown-item #{'font-weight-bold' if current_page?(results_final_ranking_path)}"
-              = link_to '#幻水推し台詞', results_recommended_lines_path, class: "dropdown-item #{'font-weight-bold' if current_page?(results_recommended_lines_path)}"
+          li class = "nav-item #{'active font-weight-bold' if current_page?(result_tweets_path)}"
+              = link_to '最終順位', results_final_ranking_path, class: 'nav-link', style: 'color: black;'
+
+          li class = "nav-item #{'active font-weight-bold' if current_page?(result_tweets_path)}"
+              = link_to '#幻水推し台詞', results_recommended_lines_path, class: 'nav-link', style: 'color: black;'
 
           li class = "nav-item #{'active font-weight-bold' if current_page?(result_tweets_path)}"
               = link_to '開票ツイート', result_tweets_path, class: 'nav-link', style: 'color: black;'
