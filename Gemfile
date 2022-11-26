@@ -11,8 +11,8 @@ group :test, :development, :production do
   gem 'jbuilder'
   gem 'jquery-rails'
   gem 'sass-rails'
+  gem 'terser'
   gem 'turbolinks'
-  gem 'uglifier'
 
   gem 'bootstrap'
   gem 'bullet'
