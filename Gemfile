@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Heroku にデプロイするので Gemfile の中で固定する
-ruby '2.7.7'
+ruby '3.1.3'
 
 gem 'rails'
 
