@@ -438,7 +438,7 @@ GEM
     sshkit-interactive (0.3.0)
       sshkit (~> 1.12)
     temple (0.8.2)
-    terser (1.1.16)
+    terser (1.1.17)
       execjs (>= 0.3.0, < 3)
     thor (1.2.2)
     thread_safe (0.3.6)
