@@ -1,13 +1,12 @@
 FROM ruby:3.2.2
 ENV LANG C.UTF-8
-ARG NODEJS_MAJOR_VERSION=16.x
-ARG NODEJS_PATCH_VERSION=16.19.0
+ARG NODEJS_VERSION=22.14.0
 ARG YARN_VERSION=1.22.19
 
 RUN apt update -qq && apt install -y build-essential libpq-dev
 RUN curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && \
     chmod +x /usr/local/bin/n && \
-    n 22.14.0
+    n "$NODEJS_VERSION"
 RUN npm install -g yarn@$YARN_VERSION
 RUN gem install bundler
 
