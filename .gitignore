@@ -17,6 +17,7 @@ public/assets/
 yarn-error.log
 .byebug_history
 .env*
+!.env.example
 .envrc
 config/google_drive_api.json
 circleci_local.sh
