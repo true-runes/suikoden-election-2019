@@ -24,11 +24,11 @@ group :test, :development, :production do
   gem 'pg'
   gem 'pry'
   gem 'pry-rails'
+  gem 'puma'
   gem 'rb-readline'
   gem 'slim-rails'
   gem 'smarter_csv'
   gem 'twitter'
-  gem 'unicorn'
 end
 
 group :development, :test do
@@ -51,6 +51,5 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'puma'
   gem 'selenium-webdriver'
 end
