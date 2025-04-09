@@ -5,9 +5,9 @@ ARG NODEJS_PATCH_VERSION=16.19.0
 ARG YARN_VERSION=1.22.19
 
 RUN apt update -qq && apt install -y build-essential libpq-dev
-RUN curl -o nodejs.deb https://deb.nodesource.com/node_$NODEJS_MAJOR_VERSION/pool/main/n/nodejs/nodejs_$NODEJS_PATCH_VERSION-deb-1nodesource1_amd64.deb && \
-    apt install -y ./nodejs.deb && \
-    rm nodejs.deb
+RUN curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && \
+    chmod +x /usr/local/bin/n && \
+    n 22.14.0
 RUN npm install -g yarn@$YARN_VERSION
 RUN gem install bundler
 
