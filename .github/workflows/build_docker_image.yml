@@ -18,7 +18,7 @@ defaults:
 
 env:
   # TODO: Git のタグを取得して、イメージのタグにする
-  DOCKER_IMAGE: asia-northeast1-docker.pkg.dev/${{ secrets.CLOUD_RUN_PROJECT }}/cloud-run-source-deploy/gensosenkyo-2018
+  DOCKER_IMAGE: asia-northeast1-docker.pkg.dev/${{ secrets.CLOUD_RUN_PROJECT }}/cloud-run-source-deploy/gensosenkyo-2019
   RAILS_ENV: test
   PG_HOST_TEST: localhost
   PG_PORT_TEST: 5432
