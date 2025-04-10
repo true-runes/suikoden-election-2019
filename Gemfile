@@ -30,9 +30,6 @@ gem 'twitter'
 
 group :development do
   gem 'bullet'
-
-  gem 'spring'
-  gem 'spring-watcher-listen'
   gem 'web-console'
 
   gem 'awesome_print'
