@@ -45,7 +45,7 @@ jobs:
           POSTGRES_USER: postgres_user
           POSTGRES_PASSWORD: postgres_password
           # POSTGRES_DB: gss2019_test
-          # POSTGRES_INITDB_ARGS: -U postgres_user -W postgres_password
+          POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C
           # POSTGRES_HOST_AUTH_METHOD: md5
           # PGDATA: /var/lib/postgresql/data
         options: >-
