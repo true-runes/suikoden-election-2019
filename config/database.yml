@@ -33,7 +33,4 @@ test:
   username: <%= ENV['PG_USERNAME_TEST'] || 'gss2017' %>
   password: <%= ENV['PG_PASSWORD_TEST'] || 'gss2017_password' %>
   database: gss2019_test
-  template: template0
-  collation: ja_JP.UTF-8
-  ctype: ja_JP.UTF-8
   sslmode: disable
