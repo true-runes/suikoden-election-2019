@@ -21,6 +21,7 @@ group :test, :development, :production do
   gem 'google_drive'
   gem 'kaminari'
   gem 'listen'
+  gem 'observer'
   gem 'pg'
   gem 'pry'
   gem 'pry-rails'

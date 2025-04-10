@@ -281,6 +281,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.7-x86_64-linux-gnu)
       racc (~> 1.4)
+    observer (0.1.2)
     os (1.1.4)
     parallel (1.23.0)
     parser (3.2.2.3)
@@ -505,6 +506,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen
+  observer
   pg
   pry
   pry-byebug
