@@ -35,15 +35,19 @@ jobs:
   rails_app_test:
     name: Rails アプリのテスト
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     services:
       postgres:
-        image: postgres:15.4
+        image: postgres:17.4
         ports:
           - 5432:5432
         env:
           POSTGRES_USER: postgres_user
           POSTGRES_PASSWORD: postgres_password
+          # POSTGRES_DB: gss2019_test
+          # POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C
+          # POSTGRES_HOST_AUTH_METHOD: md5
+          # PGDATA: /var/lib/postgresql/data
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
