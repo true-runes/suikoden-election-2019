@@ -36,24 +36,44 @@ jobs:
     name: Rails アプリのテスト
     runs-on: ubuntu-24.04
     timeout-minutes: 10
-    services:
-      postgres:
-        image: postgres:17.4
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: postgres_user
-          POSTGRES_PASSWORD: postgres_password
-          # POSTGRES_DB: gss2019_test
-          # POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C
-          # POSTGRES_HOST_AUTH_METHOD: md5
-          # PGDATA: /var/lib/postgresql/data
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    # services:
+    #   postgres:
+    #     image: postgres:17.4
+    #     ports:
+    #       - 5432:5432
+    #     env:
+    #       POSTGRES_USER: postgres_user
+    #       POSTGRES_PASSWORD: postgres_password
+    #       # POSTGRES_DB: gss2019_test
+    #       # POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C
+    #       # POSTGRES_HOST_AUTH_METHOD: md5
+    #       # PGDATA: /var/lib/postgresql/data
+    #     options: >-
+    #       --health-cmd pg_isready
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
     steps:
+      # https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#postgresql
+      - name: （デバッグ用）PostgreSQL が停止していることを確認する
+        # inactive (dead) の場合は戻り値が 3 になりワークフローの実行が止まるので、true を返すようにする
+        run: |
+          # sudo systemctl status postgresql.service || true
+          sudo service postgresql status || true
+      - name: PostgreSQL を有効にする
+        run: |
+          # sudo systemctl start postgresql.service
+          sudo service postgresql start
+      - name: （デバッグ用）PostgreSQL が起動していることを確認する
+        run: |
+          # sudo systemctl status postgresql.service
+          sudo service postgresql status
+      - name: （デバッグ用）PostgreSQL クライアント のバージョンを確認する
+        run: |
+          psql --version
+      - name: （デバッグ用）PostgreSQL サーバ のバージョンを確認する
+        run: |
+          sudo -u postgres psql -c 'SELECT version();'
       - name: $ git clone する
         # https://github.com/actions/checkout/releases
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
