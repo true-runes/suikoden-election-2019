@@ -38,4 +38,5 @@ test:
   # collation: ja_JP.UTF-8
   # ctype: ja_JP.UTF-8
   sslmode: disable
-  authentication_method: trust # または peer
+  # authentication_method: trust
+  authentication_method: peer
