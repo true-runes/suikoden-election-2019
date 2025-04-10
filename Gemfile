@@ -41,7 +41,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'rubocop-rails', require: false
-  gem 'simplecov' # カバレッジをちゃんと扱えていないなら（まだ）不要なので削除する
 end
 
 group :test do
