@@ -7,6 +7,7 @@ gem 'rails'
 
 gem 'bootsnap', require: false
 gem 'bootstrap'
+gem 'csv'
 gem 'dotenv-rails'
 gem 'draper'
 gem 'gon'
