@@ -33,4 +33,8 @@ test:
   username: <%= ENV['PG_USERNAME_TEST'] || 'gss2017' %>
   password: <%= ENV['PG_PASSWORD_TEST'] || 'gss2017_password' %>
   database: gss2019_test
+  # GitHub Actions（サービスコンテナで PostgreSQL を起動した場合）ではロケールが見つからないと怒られて落ちる
+  # ロケールを設定するステップを実行してもだめだったし、"--encoding=UTF-8 --locale=C" を指定してもだめだった
+  # collation: ja_JP.UTF-8
+  # ctype: ja_JP.UTF-8
   sslmode: disable
