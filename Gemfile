@@ -23,7 +23,6 @@ gem 'puma'
 gem 'rb-readline'
 gem 'sass-rails'
 gem 'slim-rails'
-gem 'smarter_csv' # 未使用のようなので削除可能
 gem 'terser' # JavaScript の圧縮用の gem
 gem 'turbolinks'
 gem 'twitter'
