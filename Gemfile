@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'listen'
 gem 'observer'
+gem 'ostruct'
 gem 'pg'
 gem 'pry' # irb が発達したので不要
 gem 'pry-rails' # irb が発達したので不要
