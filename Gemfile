@@ -5,49 +5,47 @@ ruby '3.3.7'
 
 gem 'rails'
 
-group :test, :development, :production do
-  gem 'bootsnap', require: false
-  gem 'jbuilder'
-  gem 'jquery-rails'
-  gem 'sass-rails'
-  gem 'terser'
-  gem 'turbolinks'
-
-  gem 'bootstrap'
-  gem 'bullet'
-  gem 'dotenv-rails'
-  gem 'draper'
-  gem 'gon'
-  gem 'google_drive'
-  gem 'kaminari'
-  gem 'listen'
-  gem 'observer'
-  gem 'pg'
-  gem 'pry'
-  gem 'pry-rails'
-  gem 'puma'
-  gem 'rb-readline'
-  gem 'slim-rails'
-  gem 'smarter_csv'
-  gem 'twitter'
-end
-
-group :development, :test do
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
-  gem 'simplecov'
-end
+gem 'bootsnap', require: false
+gem 'bootstrap'
+gem 'dotenv-rails'
+gem 'draper'
+gem 'gon'
+gem 'google_drive'
+gem 'jbuilder'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'listen'
+gem 'observer'
+gem 'pg'
+gem 'pry' # irb が発達したので不要
+gem 'pry-rails' # irb が発達したので不要
+gem 'puma'
+gem 'rb-readline'
+gem 'sass-rails'
+gem 'slim-rails'
+gem 'smarter_csv' # 未使用のようなので削除可能
+gem 'terser' # JavaScript の圧縮用の gem
+gem 'turbolinks'
+gem 'twitter'
 
 group :development do
+  gem 'bullet'
+
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'
 
   gem 'awesome_print'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'pry-byebug'
+  gem 'better_errors' # "better_errors" と "binding_of_caller" がペアとなり、エラー時に Web にわかりやすい表示をする
+  gem 'binding_of_caller' # "better_errors" と "binding_of_caller" がペアとなり、エラー時に Web にわかりやすい表示をする
+  gem 'pry-byebug' # irb が発達したので不要
+end
+
+group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
   gem 'rubocop-rails', require: false
+  gem 'simplecov' # カバレッジをちゃんと扱えていないなら（まだ）不要なので削除する
 end
 
 group :test do
