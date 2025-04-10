@@ -74,6 +74,9 @@ jobs:
       - name: （デバッグ用）PostgreSQL サーバ のバージョンを確認する
         run: |
           sudo -u postgres psql -c 'SELECT version();'
+      - name: （デバッグ用）PostgreSQL サーバ のユーザ一覧を確認する
+        run: |
+          sudo -u postgres psql -c '\du'
       - name: $ git clone する
         # https://github.com/actions/checkout/releases
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
