@@ -20,10 +20,6 @@ env:
   # TODO: Git のタグを取得して、イメージのタグにする
   DOCKER_IMAGE: asia-northeast1-docker.pkg.dev/${{ secrets.CLOUD_RUN_PROJECT }}/cloud-run-source-deploy/gensosenkyo-2019
   RAILS_ENV: test
-  PG_HOST_TEST: localhost
-  PG_PORT_TEST: 5432
-  PG_USERNAME_TEST: postgres_user
-  PG_PASSWORD_TEST: postgres_password
   LANG: ja_JP.UTF-8
   RUBY_YJIT_ENABLE: 1
   TZ: Asia/Tokyo
@@ -33,19 +29,6 @@ jobs:
     name: Docker イメージ をビルドできるかどうか
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    services:
-      postgres:
-        image: postgres:15.4
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: postgres_user
-          POSTGRES_PASSWORD: postgres_password
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     steps:
       - name: $ git clone する
         # https://github.com/actions/checkout/releases
