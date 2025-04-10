@@ -25,7 +25,7 @@ env:
   RAILS_ENV: test
   PG_HOST_TEST: localhost
   PG_PORT_TEST: 5432
-  PG_USERNAME_TEST: postgres_user
+  PG_USERNAME_TEST: postgres
   PG_PASSWORD_TEST: postgres_password
   LANG: ja_JP.UTF-8
   RUBY_YJIT_ENABLE: 1
